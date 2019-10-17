@@ -5,7 +5,7 @@ Setup: Follow these steps:
 4. Run npm install and wait for all dependencies to be installed
 5. Run npm start to verify that installation was successful.
 
-ERD: ![Image description](Screen Shot 2019-10-16 at 6.53.44 PM.png)
+ERD: ![Image description](https://github.com/hspradlin8/ClothesSwap/blob/master/Screen%20Shot%202019-10-16%20at%206.53.44%20PM.png)
 
 ## Project Title:
 Sharing is Caring-A clothes swapping app where users can share photos of their items they want to share or swap.
@@ -18,17 +18,4 @@ Tech/Framework Used:
 React 
 React Strap
 
-Skills and Concepts that will be utilized:
-1. Functions
-1. Databases/API
-1. Github
-1. Objects
-1. CSS/Flexbox
-1. Array methods
-1. Handling user events
-1. Factory functions
-1. Implementing CRUD operations
-1. Modular code with Webpack
-1. Relational data
-1. Webpack
-1. React
+
