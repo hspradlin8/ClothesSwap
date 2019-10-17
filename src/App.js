@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+//import ApplicationView from './component/auth/ApplicationView';
+//import NavBar from './component/nav/NavBar';
+//import Login from './component/auth/Login';
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+
+  //isAuthenticated = () => parseInt(sessionStorage.getItem("credentials") !== null)
+
+  render() {
+    return(
+      <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <h2>This is App</h2>
       </header>
     </div>
-  );
+    )
+  }
 }
 
 export default App;
