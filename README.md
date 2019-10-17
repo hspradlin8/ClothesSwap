@@ -5,7 +5,7 @@ Setup: Follow these steps:
 4. Run npm install and wait for all dependencies to be installed
 5. Run npm start to verify that installation was successful.
 
-ERD: ![Image description]()
+ERD: ![Image description](Screen Shot 2019-10-16 at 6.53.44 PM.png)
 
 ## Project Title:
 Sharing is Caring-A clothes swapping app where users can share photos of their items they want to share or swap.
