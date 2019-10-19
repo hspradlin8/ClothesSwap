@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Heidi",
+      "email": "heidi@heidi",
+      "password": "heidi",
+      "id": 2
+    },
+    {
+      "name": "Sage ",
+      "email": "sage@sage",
+      "password": "sage",
+      "id": 3
+    },
+    {
+      "name": "Aryn",
+      "email": "aryn@aryn",
+      "password": "aryn",
+      "id": 4
+    }
+  ]
+}
