@@ -1,22 +1,66 @@
-import React, { Component } from 'react';
-import './App.css';
-//import ApplicationView from './component/auth/ApplicationView';
-//import NavBar from './component/nav/NavBar';
-//import Login from './component/auth/Login';
+ import React, { Component } from "react";
+// import ApplicationViews from "../ApplicationViews";
+import NavBar from "./component/nav/NavBar";
+import Register from "./component/auth/Login";
+import Login from "./component/auth/Register";
+import About from "./component/auth/About";
+
+
 
 class App extends Component {
+  state = {
+    user: false
+  }
+  // Check if credentials are in session storage
+  //returns true/false
+  isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
-  //isAuthenticated = () => parseInt(sessionStorage.getItem("credentials") !== null)
+  setUser = (authObj) => {
+    /*
+      For now, just store the email and password that
+      the customer enters into local storage.
+    */
+    sessionStorage.setItem(
+      "credentials",
+      JSON.stringify(authObj)
+    )
+    this.setState({
+      user: this.isAuthenticated()
+    });
+  }
+
+  clearUser = () => {
+    sessionStorage.clear()
+
+    this.setState({
+      user: this.isAuthenticated()
+    });
+
+  }
+  componentDidMount() {
+    this.setState({
+      user: this.isAuthenticated()
+    })
+  }
 
   render() {
-    return(
-      <div className="App">
-      <header className="App-header">
-    <h2>This is App</h2>
-      </header>
-    </div>
-    )
+    return (
+      <React.Fragment>
+      {(this.state.user) ?
+        <>
+        <NavBar clearUser={this.clearUser} />
+        {/* <ApplicationViews /> */}
+        </>
+       :<><div className="logRegContainer">
+         <Login setUser={this.setUser}/>
+       <Register setUser={this.setUser} />
+       <About />
+       </div>
+       </>}
+      </React.Fragment>
+    );
   }
 }
 
 export default App;
+ 
