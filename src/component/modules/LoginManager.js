@@ -13,5 +13,17 @@ export default {
     getUserData() {
         return fetch(`${remoteURL}/users`)
             .then(data => data.json())
-    }
+    },
+    setUser(authObj){
+
+        //  For now, just store the email and password that the customer enters into local storage.
+        sessionStorage.setItem(
+          "credentials",
+          JSON.stringify(authObj)
+        )
+        this.setState({
+          user: this.isAuthenticated(),
+          userId: authObj.id
+        });
+      }
 }
