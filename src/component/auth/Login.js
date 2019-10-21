@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import LoginManager from "../modules/LoginManager";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { withRouter } from "react-router-dom";
 
 
 class Login extends Component {
@@ -13,32 +14,40 @@ class Login extends Component {
         id: "",
     }
 
+
     handleFieldChange = (evt) => {
         const stateToChange = {}
         stateToChange[evt.target.id] = evt.target.value
         this.setState(stateToChange)
     }
 
+    // 
     handleLogin = (e) => {
         e.preventDefault()
-        LoginManager.getUserData("users").then((users) => {
-            let singleUser = users.find(
-                user =>
-                    user.password.toLowerCase() === this.state.password.toLowerCase() &&
-                    user.email.toLowerCase() === this.state.email.toLowerCase()
-            );
-            if (this.state.email === "") {
-                window.alert("Please enter email")
-            } else if (this.state.password === "") {
-                window.alert("Please enter password")
-            } else if (singleUser) {
-                this.props.setUser(singleUser);
-            } else {
-                window.alert("User email and password do not match")
-            }
-        })
-
-    }
+        /*
+            For now, just store the email and password that
+            the customer enters into local storage.
+        */
+        let credentials = { email: this.state.email, password: this.state.password }
+        LoginManager.getUserData(this.state.email)
+            .then(result => {
+                console.log(result)
+                if (result.length > 0) {
+                    console.log("if triggered")
+                    this.props.setUser(result);
+                    this.props.history.push("/");
+                } else {
+                    console.log(credentials)
+                    LoginManager.createUser(credentials)
+                        .then(result => {
+                            console.log("result is", result);
+                            this.props.setUser(result);
+                        })
+                        this.props.history.push("/")
+                }
+               
+            })
+    }    
 
     render() {
         return (
@@ -63,4 +72,4 @@ class Login extends Component {
                 );
             }
         }
-export default Login; 
+export default withRouter(Login);

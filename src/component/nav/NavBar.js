@@ -1,12 +1,13 @@
 import React from 'react';
 import { Component } from 'react'
 import { Link } from "react-router-dom"
-import './NavBar.css'
+import './NavBar.css';
+import { withRouter } from "react-router-dom";
 
-class Navbar extends Component {
+class NavBar extends Component {
     handleLogout = () => {
         this.props.clearUser();
-        //this.props.history.push('/');
+        this.props.history.push("/login");
     }
 
     render() {
@@ -16,10 +17,11 @@ class Navbar extends Component {
                 </h1>
                 <nav>
                 <ul className="container">
-            <li><Link className="nav-link" to="/">My Closet</Link></li>
-            {(this.props.user) ?
+            <li><Link className="nav-link" to="/">Home</Link></li>
+            <li><Link className="nav-link" to="/myCloset">My Closet</Link></li>
+            {!this.props.user && 
             <li><Link className="nav-link" to="/login">Login</Link></li>
-            : null}
+            }
               <>
               <li><Link className="nav-link" to="/newClothes">Find New Clothes</Link></li>
             <li><span className="nav-link" onClick={this.handleLogout}>Logout</span></li>
@@ -30,4 +32,4 @@ class Navbar extends Component {
         )
     }
 }
-export default Navbar
+export default withRouter(NavBar);

@@ -1,5 +1,5 @@
- import React, { Component } from "react";
-// import ApplicationViews from "../ApplicationViews";
+import React, { Component } from "react";
+import ApplicationViews from "./component/auth/ApplicationViews";
 import NavBar from "./component/nav/NavBar";
 import Register from "./component/auth/Login";
 import Login from "./component/auth/Register";
@@ -46,21 +46,27 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-      {(this.state.user) ?
-        <>
-        <NavBar clearUser={this.clearUser} />
-        {/* <ApplicationViews /> */}
-        </>
-       :<><div className="logRegContainer">
-         <Login setUser={this.setUser}/>
-       <Register setUser={this.setUser} />
-       <About />
-       </div>
-       </>}
+        {(this.state.user) ?
+          <>
+            <NavBar
+              user={this.state.user}
+              isAuthenticated={this.isAuthenticated}
+              clearUser={this.clearUser}
+            />
+              <ApplicationViews
+                    user={this.state.user}
+                    isAuthenticated={this.isAuthenticated}
+                />
+          </>
+          : <><div className="logRegContainer">
+            <Login setUser={this.setUser} />
+            <Register setUser={this.setUser} />
+            <About />
+          </div>
+          </>}
       </React.Fragment>
     );
   }
 }
 
 export default App;
- 

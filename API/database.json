@@ -24,5 +24,15 @@
       "password": "leigh",
       "id": 5
     }
+  ],
+  "items": [
+    {
+      "name": "",
+      "quality": "",
+      "color": "",
+      "size": "",
+      "description": "",
+      "userId": ""
+    }
   ]
 }
