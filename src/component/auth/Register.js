@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import LoginManager from "../modules/LoginManager";
+import APIManager from "../modules/APIManager";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 
@@ -20,8 +20,9 @@ class Register extends Component {
 
   handleRegister = (e) => {
     e.preventDefault()
-    LoginManager.getUserData().then((users) => {
-      let validate = users.find(user => user.email.toLowerCase() === this.state.email.toLowerCase())
+    this.toggle()
+    APIManager.getAll("users").then((users) => {
+      let isMatch = users.find(user => user.email.toLowerCase() === this.state.email.toLowerCase())
 
       if (this.state.name === "") {
         window.alert("Please enter a name")
@@ -29,23 +30,28 @@ class Register extends Component {
         window.alert("Please enter an email address")
       } else if (this.state.password === "") {
         window.alert("Please enter a password")
-      } else if (validate) {
+      } else if (isMatch) {
         window.alert("Email address already exists")
       } else {
         let newUser = {
           name: this.state.name,
           email: this.state.email,
-          password: this.state.password
+          password: this.state.password,
         };
-        LoginManager.createUser(newUser)
-          .then((createdUser) => {
-            //This determines which page you land on upon registration
-            this.props.setUser(createdUser)
-          }
-          )
+        APIManager.post("users", newUser)
+            .then((createdUser) => {
+            sessionStorage.setItem("userId", createdUser.id);
+            sessionStorage.setItem("email", this.state.email);
+            sessionStorage.setItem("name", this.state.name);
+
+
+              //This determines which page you land on upon registration
+              this.props.history.push("/")
+            }
+        )}
       }
-    }
     )
+
   }
 
   render() {

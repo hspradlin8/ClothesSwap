@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import MyClosetCard from "./MyClosetCard";
+import OtherClosetCard from "../findNewClothes/OtherClosetCard";
 import APIManager from "../../modules/APIManager";
-import MyClosetAddForm from "./MyClosetAddForm"
+import OtherClosetAddForm from "./OtherClosetAddForm"
 
-class MyClosetList extends Component {
+class OtherClosetList extends Component {
   //define what this component needs to render
   state = {
     items: [],
@@ -52,11 +52,11 @@ class MyClosetList extends Component {
           <h1>Items</h1>
           {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
-          <MyClosetAddForm {...this.props}
+          <OtherClosetAddForm {...this.props}
           getData={this.getData} />
           <div className="item-container-cards">
             {this.state.items.map(item => (
-              <MyClosetCard
+              <OtherClosetCard
                 key={item.id}
                 item={item}
                 deleteItem={this.deleteItem}
@@ -70,4 +70,4 @@ class MyClosetList extends Component {
     );
   }
 }
-export default MyClosetList;
+export default OtherClosetList;

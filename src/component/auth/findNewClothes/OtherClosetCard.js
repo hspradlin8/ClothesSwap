@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import APIManager from "../../modules/APIManager";
-import MyClosetEditForm from "./MyClosetEditForm";
+import OtherClosetEditForm from "./OtherClosetEditForm";
 import { Modal, ModalHeader, ModalBody, } from "reactstrap";
 
 
 
-class MyClosetCard extends Component {
+class OtherClosetCard extends Component {
 
     state = {
         modal: false
@@ -77,7 +77,7 @@ class MyClosetCard extends Component {
                                 Edit Item
 							</ModalHeader>
                             <ModalBody>
-                                <MyClosetEditForm
+                                <OtherClosetEditForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}
@@ -96,4 +96,4 @@ class MyClosetCard extends Component {
     }
 }
 
-export default MyClosetCard;
+export default OtherClosetCard;
