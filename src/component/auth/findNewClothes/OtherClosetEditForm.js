@@ -34,7 +34,6 @@ class OtherClosetEditForm extends Component {
             size: this.state.size,
             description: this.state.description
         };
-        console.log(editedItem)
         APIManager.update("items", editedItem)
             .then(() => { this.props.getData() }
             );
@@ -63,6 +62,7 @@ class OtherClosetEditForm extends Component {
                     <form>
                         <fieldset>
                             <div className="formgrid">
+                                <label htmlFor="itemName">Item Name</label>
                                 <input
                                     type="text"
                                     required
@@ -71,15 +71,14 @@ class OtherClosetEditForm extends Component {
                                     id="itemName"
                                     value={this.state.itemName}
                                 />
-                                <label htmlFor="itemName">Item Name</label>
 
                                 <label htmlFor="quality">Quality: </label>
                             <input
-                                // type="date"
+                                type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                // id="date"
+                                 id="itemQuality"
                                 value={this.state.itemQuality}
                             />
                             <label htmlFor="venue">Color: </label>
@@ -88,7 +87,7 @@ class OtherClosetEditForm extends Component {
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="color"
+                                id="itemColor"
                                 value={this.state.itemColor}
                             />
                             <label htmlFor="venue">Size: </label>
@@ -97,8 +96,17 @@ class OtherClosetEditForm extends Component {
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="venue"
+                                id="itemSize"
                                 value={this.state.itemSize}
+                            />
+                            <label htmlFor="venue">Type: </label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                onChange={this.handleFieldChange}
+                                id="itemType"
+                                value={this.state.itemType}
                             />
                             <label htmlFor="venue">Description: </label>
                             <input
@@ -106,7 +114,7 @@ class OtherClosetEditForm extends Component {
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="description"
+                                id="itemDescription"
                                 value={this.state.itemDescription}
                             />
                             </div>

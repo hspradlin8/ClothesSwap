@@ -23,20 +23,17 @@ class Login extends Component {
 
     // 
     handleLogin = (e) => {
-        console.log("firing");
         e.preventDefault()
         /*
             For now, just store the email and password that
             the customer enters into local storage.
         */
         APIManager.getUserEmail(this.state.email).then((user) => {
-            console.log(user)
             if (this.state.email === "") {
                 window.alert("Please enter email")
             } else if (this.state.password === "") {
                 window.alert("Please enter password")
             } else if (user !== null) {
-                console.log(user)
                 let credentials= user[0].id
                 this.props.setUser(credentials);
                 this.props.history.push("/");
@@ -61,7 +58,7 @@ class Login extends Component {
                     </FormGroup>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label htmlFor="inputPassword" className="mr-sm-2">Password:</Label>
-                        <Input onChange={this.handleFieldChange} type="password"
+                        <Input onChange={this.handleFieldChange} 
                             required="" type="password" name="password" id="password" />
                     </FormGroup>
                     <Button onClick={this.handleLogin}>Submit</Button>

@@ -11,7 +11,7 @@ class OtherClosetAddForm extends Component {
         name: "",
         quality: "",
         color: "",
-        type: "",
+        // type: "",
         size: "",
         description: "",
         loadingStatus: true,

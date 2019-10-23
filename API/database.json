@@ -27,22 +27,29 @@
   ],
   "items": [
     {
+      "id": 1,
       "name": "Shirt",
       "quality": "Good",
-      "color": "Red",
-      "size": "Medium",
-      "description": "Knit",
-      "type": "pant",
-      "id": 1
+      "color": "orange",
+      "size": "small",
+      "description": "cotton"
     },
     {
-      "name": "Shirt",
-      "quality": "Good",
+      "name": "pants",
+      "quality": "poor",
+      "color": "black",
+      "size": "Medium",
+      "description": "jeans",
+      "type": "jean",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Pant ",
+      "quality": "fair",
       "color": "Red",
       "size": "Medium",
-      "description": "Knit",
-      "type": "T-shirt",
-      "id": 2
+      "description": "pants"
     }
   ]
 }
