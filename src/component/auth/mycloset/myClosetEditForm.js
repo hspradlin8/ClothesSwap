@@ -1,5 +1,6 @@
-import React, { Component } from "react"
-import myClosetManager from "../../modules/MyClosetManager";
+import React, { Component } from "react";
+import APIManager from "../../modules/APIManager";
+import { Button, ModalBody, ModalFooter } from "reactstrap";
 
 
 class MyClosetEditForm extends Component {
@@ -11,106 +12,128 @@ class MyClosetEditForm extends Component {
         type: "",
         size: "",
         description: "",
+        loadingStatus: true,
+        modal: false,
+        activeUser: parseInt(sessionStorage.getItem("userId"))
     };
 
     handleFieldChange = evt => {
-        const stateToChange = {}
-        stateToChange[evt.target.id] = evt.target.value
-        this.setState(stateToChange)
-    }
+        const stateToChange = {};
+        stateToChange[evt.target.id] = evt.target.value;
+        this.setState(stateToChange);
+    };
 
     updateExistingItem = evt => {
-        evt.preventDefault()
+        evt.preventDefault();
         this.setState({ loadingStatus: true });
         const editedItem = {
+            id: parseInt(this.props.itemId),
             name: this.state.itemName,
             quality: this.state.quality,
             color: this.state.color,
             size: this.state.size,
             description: this.state.description
         };
-
-        myClosetManager.update(editedItem)
-            .then(() => this.props.history.push("/items"))
+        console.log(editedItem)
+        APIManager.update("items", editedItem)
+            .then(() => { this.props.getData() }
+            );
     }
+
 
     componentDidMount() {
-        myClosetManager.get(this.props.match.params.itemId)
-            .then(item => {
-                this.setState({
-                    itemName: item.name,
-                    itemQuality: item.quality,
-                    itemColor: item.color,
-                    itemSize: item.size,
-                    itemDescription: item.description,
-                    loadingStatus: false,
+        return APIManager.get("items", this.props.itemId)
+            .then(
+                item => {
+                    this.setState({
+                        itemName: item.name,
+                        itemQuality: item.quality,
+                        itemColor: item.color,
+                        itemSize: item.size,
+                        itemDescription: item.description,
+                        loadingStatus: false,
+                    });
                 });
-            });
-    }
+    };
 
     render() {
         return (
             <>
-                <form>
-                    <fieldset>
-                        <div className="formgrid">
-                            <label htmlFor="animalName">Item name</label>
+                <ModalBody>
+                    <form>
+                        <fieldset>
+                            <div className="formgrid">
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="itemName"
+                                    value={this.state.itemName}
+                                />
+                                <label htmlFor="itemName">Item Name</label>
+
+                                <label htmlFor="quality">Quality: </label>
                             <input
-                                type="text"
+                                // type="date"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="itemName"
-                                value={this.state.itemName}
+                                // id="date"
+                                value={this.state.itemQuality}
                             />
-                            <label htmlFor="quality">Quality</label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="quality"
-                                value={this.state.quality}
-                            />
-                            <label htmlFor="color">Color</label>
+                            <label htmlFor="venue">Color: </label>
                             <input
                                 type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="color"
-                                value={this.state.color}
+                                value={this.state.itemColor}
                             />
-                            <label htmlFor="size">Size</label>
+                            <label htmlFor="venue">Size: </label>
                             <input
                                 type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="size"
-                                value={this.state.size}
+                                id="venue"
+                                value={this.state.itemSize}
                             />
-                            <label htmlFor="description">Description</label>
+                            <label htmlFor="venue">Description: </label>
                             <input
                                 type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="description"
-                                value={this.state.description}
+                                value={this.state.itemDescription}
                             />
-                        </div>
-                        <div className="alignRight">
-                            <button
-                                type="button" disabled={this.state.loadingStatus}
-                                onClick={this.updateExistingItem}
-                                className="btn btn-primary"
-                            >Submit</button>
-                        </div>
-                    </fieldset>
-                </form>
+                            </div>
+                            <div className="alignRight"></div>
+                        </fieldset>
+                    </form>
+                </ModalBody>
+                <ModalFooter>
+                    <Button
+                        type="button"
+                        disabled={this.state.loadingStatus}
+                        onClick={evt => {
+                            this.updateExistingItem(evt);
+                            this.props.toggle();
+                        }}
+                        className="btn btn-primary"
+                    >
+                        Submit
+					</Button>
+                    <Button className="cancel" onClick={this.props.toggle}>
+                        Cancel
+					</Button>
+                </ModalFooter>
             </>
         );
     }
 }
-    export default MyClosetEditForm;
+
+
+export default MyClosetEditForm;
