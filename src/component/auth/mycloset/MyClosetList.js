@@ -52,7 +52,7 @@ class MyClosetList extends Component {
           <h1>Items</h1>
           {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
-          <MyClosetAddForm {...this.props}
+          <MyClosetAddForm key={this.props.currentUser} {...this.props}
           getData={this.getData} />
           <div className="item-container-cards">
             {this.state.items.map(item => (

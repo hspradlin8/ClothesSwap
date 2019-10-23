@@ -9,7 +9,8 @@ import About from "./component/auth/About";
 
 class App extends Component {
   state = {
-    user: false
+    user: false,
+    currentUser: ""
   }
   // Check if credentials are in session storage
   //returns true/false
@@ -25,7 +26,8 @@ class App extends Component {
       JSON.stringify(authObj)
     )
     this.setState({
-      user: this.isAuthenticated()
+      user: this.isAuthenticated(),
+      currentUser:sessionStorage.getItem("credentials")
     });
   }
 
@@ -56,10 +58,12 @@ class App extends Component {
               <ApplicationViews
                     user={this.state.user}
                     isAuthenticated={this.isAuthenticated}
+                    currentUser={this.state.currentUser}
                 />
           </>
           : <><div className="logRegContainer">
-            <Login setUser={this.setUser} />
+            <Login setUser={this.setUser}
+                    currentUser={this.state.currentUser} />
             <Register setUser={this.setUser} />
             <About />
           </div>

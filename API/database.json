@@ -27,12 +27,22 @@
   ],
   "items": [
     {
-      "name": "",
-      "quality": "",
-      "color": "",
-      "size": "",
-      "description": "",
-      "userId": ""
+      "name": "Shirt",
+      "quality": "Good",
+      "color": "Red",
+      "size": "Medium",
+      "description": "Knit",
+      "type": "pant",
+      "id": 1
+    },
+    {
+      "name": "Shirt",
+      "quality": "Good",
+      "color": "Red",
+      "size": "Medium",
+      "description": "Knit",
+      "type": "T-shirt",
+      "id": 2
     }
   ]
 }

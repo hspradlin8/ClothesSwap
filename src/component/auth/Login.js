@@ -23,27 +23,22 @@ class Login extends Component {
 
     // 
     handleLogin = (e) => {
+        console.log("firing");
         e.preventDefault()
         /*
             For now, just store the email and password that
             the customer enters into local storage.
         */
-        APIManager.getAll("users").then((users) => {
-            let singleUser = users.find(
-                user =>
-                    user.password.toLowerCase() === this.state.password.toLowerCase() &&
-                    user.email.toLowerCase() === this.state.email.toLowerCase()
-            );
+        APIManager.getUserEmail(this.state.email).then((user) => {
+            console.log(user)
             if (this.state.email === "") {
                 window.alert("Please enter email")
             } else if (this.state.password === "") {
                 window.alert("Please enter password")
-            } else if (this.state.name === "") {
-                window.alert("Please enter your name")
-            } else if (singleUser) {
-                sessionStorage.setItem("userId", singleUser.id);
-                sessionStorage.setItem("email", this.state.email);
-                sessionStorage.setItem("name", this.state.name);
+            } else if (user !== null) {
+                console.log(user)
+                let credentials= user[0].id
+                this.props.setUser(credentials);
                 this.props.history.push("/");
             } else {
                 window.alert("Credentials do not match")
@@ -58,7 +53,7 @@ class Login extends Component {
             <>
             <div className="logRegForm">
                 <h3 className="logRegTitle">Login</h3>
-            <Form onSubmit={this.handleLogin} inline>
+            <Form inline>
                     <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                         <Label htmlFor="inputEmail" className="mr-sm-2">Email:</Label>
                         <Input onChange={this.handleFieldChange}
@@ -69,7 +64,7 @@ class Login extends Component {
                         <Input onChange={this.handleFieldChange} type="password"
                             required="" type="password" name="password" id="password" />
                     </FormGroup>
-                    <Button className="submit">Submit</Button>
+                    <Button onClick={this.handleLogin}>Submit</Button>
                 </Form>
                 </div>
                 </>
