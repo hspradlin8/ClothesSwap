@@ -11,7 +11,7 @@ class MyClosetAddForm extends Component {
         itemName: "",
         quality: "",
         color: "",
-        type: "",
+        // type: "",
         size: "",
         description: "",
         loadingStatus: true,
@@ -30,13 +30,12 @@ class MyClosetAddForm extends Component {
         const stateToChange = {};
         stateToChange[evt.target.id] = evt.target.value;
         this.setState(stateToChange);
-        console.log(this.state)
     };
 
     addItem = evt => {
         evt.preventDefault();
         this.toggle();
-        if (this.state.itemName === ""|| this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === ""|| this.state.type === "") {
+        if (this.state.itemName === ""|| this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === "") {
             window.alert("Please input an Item");
         } else {
             this.setState({ loadingStatus: true });
@@ -46,7 +45,7 @@ class MyClosetAddForm extends Component {
                 color: this.state.color,
                 size: this.state.size,
                 description: this.state.description,
-                type: this.state.type,
+                // type: this.state.type,
 
             };
 
@@ -114,14 +113,14 @@ class MyClosetAddForm extends Component {
                                         id="color"
                                         placeholder="Item Color"
                                     />
-                                     <label htmlFor="type">Type:</label>
+                                     {/* <label htmlFor="type">Type:</label>
                                     <input
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
                                         id="type"
                                         placeholder="Item Type"
-                                    />
+                                    /> */}
                                     <label htmlFor="itemDescription">Description:</label>
                                     <input
                                         type="text"

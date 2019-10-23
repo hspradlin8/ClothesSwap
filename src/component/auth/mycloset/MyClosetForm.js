@@ -7,7 +7,7 @@ class MyClosetForm extends Component {
         itemName: "",
         quality: "",
         color: "",
-        type: "",
+        // type: "",
         size: "",
         description: "",
         loadingStatus: false,
@@ -24,23 +24,23 @@ class MyClosetForm extends Component {
     */
     constructNewItem = evt => {
         evt.preventDefault();
-        if (this.state.itemName === "" || this.state.quality === "" || this.state.color=== "" || this.state.description=== "" || this.state.size=== "") {
+        if (this.state.itemName === "" || this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === "") {
             window.alert("Please input an item");
         } else {
             this.setState({ loadingStatus: true });
-           let item = {
-                name: this.state.itemName,
+            let item = {
+                itemName: this.state.itemName,
                 quality: this.state.quality,
                 color: this.state.color,
                 size: this.state.size,
-                type: this.state.type,
+                // type: this.state.type,
                 description: this.state.description,
                 userID: this.props.currentUser,
                 url: this.state.url
             };
 
             // Create the item and redirect user to MyClosetList
-            MyClosetManager.post("items",item)
+            MyClosetManager.post("items", item)
                 .then(() => this.props.history.push("/items"));
         }
     };
@@ -52,14 +52,14 @@ class MyClosetForm extends Component {
                 <form>
                     <fieldset>
                         <div className="formgrid">
-                        <label htmlFor="itemName">Item name</label>
+                            <label htmlFor="itemName">Item name</label>
                             <input
                                 type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="itemName"
-                                // value={this.state.itemName}
+                                value={this.state.itemName}
                             />
                             <label htmlFor="quality">Quality</label>
                             <input
@@ -68,7 +68,7 @@ class MyClosetForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="quality"
-                                // value={this.state.quality}
+                                value={this.state.quality}
                             />
                             <label htmlFor="color">Color</label>
                             <input
@@ -77,7 +77,7 @@ class MyClosetForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="color"
-                                // value={this.state.color}
+                                value={this.state.color}
                             />
                             <label htmlFor="size">Size</label>
                             <input
@@ -86,17 +86,17 @@ class MyClosetForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="size"
-                                // value={this.state.size}
+                                value={this.state.size}
                             />
-                             <label htmlFor="type">Type</label>
+                            {/* <label htmlFor="type">Type</label>
                             <input
                                 type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="type"
-                                // value={this.state.type}
-                            />
+                                value={this.state.type}
+                            /> */}
                             <label htmlFor="description">Description</label>
                             <input
                                 type="text"
@@ -104,10 +104,10 @@ class MyClosetForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="description"
-                                // value={this.state.description}
+                                value={this.state.description}
                             />
-                        <label htmlFor="photo">Photo</label>
-                        {/* where the input for URL ends */}
+                            <label htmlFor="photo">Photo</label>
+                            {/* where the input for URL ends */}
                         </div>
                         <div className="alignRight">
                             <button
