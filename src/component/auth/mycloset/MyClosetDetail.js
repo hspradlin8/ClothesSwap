@@ -5,10 +5,10 @@ import MyClosetManager from '../../modules/MyClosetManager';
 class MyClosetDetail extends Component {
 
     state = {
-        name: "",
+        itemName: "",
         quality: "",
         color: "",
-        type: "",
+        // type: "",
         size: "",
         description: "",
         url: "",
@@ -22,13 +22,12 @@ class MyClosetDetail extends Component {
             .then(() => this.props.history.push("/items"))
     }
     componentDidMount() {
-        console.log("MyClosetDetail: ComponentDidMount");
         //get(id) from MyClosetManager and hang on to that data; put it into state
         MyClosetManager.get(this.props.itemId)
             .then((item) => {
                 this.setState({
                     // id: this.props.item.id,
-                    name: this.state.itemName,
+                    itemName: this.state.itemName,
                     quality: this.state.quality,
                     color: this.state.color,
                     size: this.state.size,

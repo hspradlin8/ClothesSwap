@@ -6,10 +6,10 @@ import { Button, ModalBody, ModalFooter } from "reactstrap";
 class MyClosetEditForm extends Component {
     //set the initial state
     state = {
-        name: "",
+        itemName: "",
         quality: "",
         color: "",
-        type: "",
+        // type: "",
         size: "",
         description: "",
         loadingStatus: true,
@@ -28,7 +28,7 @@ class MyClosetEditForm extends Component {
         this.setState({ loadingStatus: true });
         const editedItem = {
             id: parseInt(this.props.itemId),
-            name: this.state.itemName,
+            itemName: this.state.itemName,
             quality: this.state.quality,
             color: this.state.color,
             size: this.state.size,
@@ -46,11 +46,12 @@ class MyClosetEditForm extends Component {
             .then(
                 item => {
                     this.setState({
-                        itemName: item.name,
-                        itemQuality: item.quality,
-                        itemColor: item.color,
-                        itemSize: item.size,
-                        itemDescription: item.description,
+                        itemName: item.itemName,
+                        quality: item.quality,
+                        color: item.color,
+                        size: item.size,
+                        // itemType: item.itemType,
+                        description: item.description,
                         loadingStatus: false,
                     });
                 });
@@ -63,6 +64,7 @@ class MyClosetEditForm extends Component {
                     <form>
                         <fieldset>
                             <div className="formgrid">
+                                <label htmlFor="itemName">Item Name</label>
                                 <input
                                     type="text"
                                     required
@@ -71,17 +73,25 @@ class MyClosetEditForm extends Component {
                                     id="itemName"
                                     value={this.state.itemName}
                                 />
-                                <label htmlFor="itemName">Item Name</label>
 
                                 <label htmlFor="quality">Quality: </label>
                             <input
-                                // type="date"
+                                type="text"
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                // id="date"
-                                value={this.state.itemQuality}
+                                 id="quality"
+                                value={this.state.quality}
                             />
+                            {/* <label htmlFor="itemType">Type: </label>
+                            <input
+                                type="text"
+                                required
+                                className="form-control"
+                                onChange={this.handleFieldChange}
+                                 id="itemType"
+                                value={this.state.itemType}
+                            /> */}
                             <label htmlFor="venue">Color: </label>
                             <input
                                 type="text"
@@ -89,7 +99,7 @@ class MyClosetEditForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="color"
-                                value={this.state.itemColor}
+                                value={this.state.color}
                             />
                             <label htmlFor="venue">Size: </label>
                             <input
@@ -97,8 +107,8 @@ class MyClosetEditForm extends Component {
                                 required
                                 className="form-control"
                                 onChange={this.handleFieldChange}
-                                id="venue"
-                                value={this.state.itemSize}
+                                id="size"
+                                value={this.state.size}
                             />
                             <label htmlFor="venue">Description: </label>
                             <input
@@ -107,7 +117,7 @@ class MyClosetEditForm extends Component {
                                 className="form-control"
                                 onChange={this.handleFieldChange}
                                 id="description"
-                                value={this.state.itemDescription}
+                                value={this.state.description}
                             />
                             </div>
                             <div className="alignRight"></div>

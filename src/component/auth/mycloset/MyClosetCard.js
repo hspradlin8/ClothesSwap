@@ -35,20 +35,18 @@ class MyClosetCard extends Component {
             <>
                 <div className="item-card">
                     <div className="card-content">
-                        <h3>
-                            Item Name:{this.props.item.itemName}
-                            <span className="card-itemTitle"></span>
-                        </h3>
+                        <p>
+                            Item Name:{this.props.item.name}
+                            {/* <span className="card-itemTitle"></span> */}
+                        </p>
 
-                        {/* <p>Item Size:{this.props.item.itemSize}</p>
+                        <p>Size:{this.props.item.size}</p>
                        
-                        <p>Item Color:{this.props.item.itemColor}</p>
+                        <p>Color:{this.props.item.color}</p>
                        
-                        <p>Item Quality:{this.props.item.itemQuality}</p>
+                        <p>Quality:{this.props.item.quality}</p>
 
-                        <p>Item Type: {this.props.item.itemType}</p>
-
-                        <p>Item Description: {this.props.item.itemDescription}</p> */}
+                        <p>Description: {this.props.item.description}</p>
 
                         <button
                             type="button" className="delete-item"
