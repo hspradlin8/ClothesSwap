@@ -8,7 +8,7 @@ class MyClosetAddForm extends Component {
 
     //set the initial state
     state = {
-        name: "",
+        itemName: "",
         quality: "",
         color: "",
         type: "",
@@ -95,7 +95,7 @@ class MyClosetAddForm extends Component {
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
-                                        id="itemQuality"
+                                        id="quality"
                                         placeholder="Item Quality"
                                     />
                                     <label htmlFor="itemSize">Size:</label>
@@ -103,7 +103,7 @@ class MyClosetAddForm extends Component {
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
-                                        id="itemSize"
+                                        id="size"
                                         placeholder="Item Size"
                                     />
                                     <label htmlFor="color">Color:</label>
@@ -111,15 +111,23 @@ class MyClosetAddForm extends Component {
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
-                                        id="itemColor"
+                                        id="color"
                                         placeholder="Item Color"
+                                    />
+                                     <label htmlFor="type">Type:</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        onChange={this.handleFieldChange}
+                                        id="type"
+                                        placeholder="Item Type"
                                     />
                                     <label htmlFor="itemDescription">Description:</label>
                                     <input
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
-                                        id="itemDescription"
+                                        id="description"
                                         placeholder="Item Description"
                                     />
                                 </div>

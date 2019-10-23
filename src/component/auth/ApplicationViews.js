@@ -10,6 +10,7 @@ class ApplicationViews extends Component {
     isAuthenticated = () => localStorage.getItem("credentials") !== null
 
     render() {
+        // console.log(this.props.currentUser)
         return (
             <React.Fragment>
                 <Route
@@ -20,7 +21,7 @@ class ApplicationViews extends Component {
                 }}
             />
             <Route exact path="/myCloset" render={(props) => {
-                return <MyClosetList {...props} />
+                return <MyClosetList key={this.props.currentUser} currentUser={this.props.currentUser} {...props} />
               }} />
               <Route exact path="/findNewClothes" render={(props) => {
                 return <OtherClosetList {...props} />

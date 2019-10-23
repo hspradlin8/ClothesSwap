@@ -17,7 +17,7 @@ class MyClosetCard extends Component {
         }));
     }
 
-    activeUserId = parseInt(sessionStorage.getItem("userId"))
+    activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
     handleDelete = id => {
         APIManager.delete("items", id)
@@ -40,7 +40,7 @@ class MyClosetCard extends Component {
                             <span className="card-itemTitle"></span>
                         </h3>
 
-                        <p>Item Size:{this.props.item.itemSize}</p>
+                        {/* <p>Item Size:{this.props.item.itemSize}</p>
                        
                         <p>Item Color:{this.props.item.itemColor}</p>
                        
@@ -48,7 +48,7 @@ class MyClosetCard extends Component {
 
                         <p>Item Type: {this.props.item.itemType}</p>
 
-                        <p>Item Description: {this.props.item.itemDescription}</p>
+                        <p>Item Description: {this.props.item.itemDescription}</p> */}
 
                         <button
                             type="button" className="delete-item"

@@ -4,8 +4,11 @@ export default {
   get(resource, id) {
     return fetch(`${remoteURL}/${resource}/${id}`).then(result => result.json())
   },
-  getAll(resource, userId) {
-    return fetch(`${remoteURL}/${resource}?userId=${userId}&_sort=timeStamp`).then(result => result.json())
+  getAll(resource) {
+    return fetch(`${remoteURL}/${resource}`).then(result => result.json())
+  },
+  getUserEmail(email){
+    return fetch(`${remoteURL}/users?email=${email}`).then(result => result.json())
   },
 
   getAllMessages(resource) {
