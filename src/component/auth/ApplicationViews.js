@@ -24,7 +24,7 @@ class ApplicationViews extends Component {
                 return <MyClosetList key={this.props.currentUser} currentUser={this.props.currentUser} {...props} />
               }} />
               <Route exact path="/findNewClothes" render={(props) => {
-                return <OtherClosetList {...props} />
+                return <OtherClosetList currentUser={this.props.currentUser}{...props} />
               }} />
             </React.Fragment>
         )

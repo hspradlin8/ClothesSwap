@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIManager from "../../modules/APIManager";
-import MyClosetEditForm from "./MyClosetEditForm";
+import MyClosetEditForm from "./myClosetEditForm";
 import { Modal, ModalHeader, ModalBody, } from "reactstrap";
 
 

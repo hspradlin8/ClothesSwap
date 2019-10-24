@@ -14,7 +14,7 @@ class MyClosetEditForm extends Component {
         description: "",
         loadingStatus: true,
         modal: false,
-        activeUser: parseInt(sessionStorage.getItem("userId"))
+        activeUser: parseInt(sessionStorage.getItem("credentials"))
     };
 
     handleFieldChange = evt => {
@@ -46,7 +46,7 @@ class MyClosetEditForm extends Component {
             .then(
                 item => {
                     this.setState({
-                        itemName: item.itemName,
+                        itemName: item.name,
                         quality: item.quality,
                         color: item.color,
                         size: item.size,
@@ -58,6 +58,7 @@ class MyClosetEditForm extends Component {
     };
 
     render() {
+        // console.log(this.state.itemName)
         return (
             <>
                 <ModalBody>
