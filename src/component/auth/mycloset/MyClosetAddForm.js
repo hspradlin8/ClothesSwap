@@ -8,6 +8,7 @@ class MyClosetAddForm extends Component {
 
     //set the initial state
     state = {
+        userId: sessionStorage.getItem("credentials"),
         itemName: "",
         quality: "",
         color: "",
@@ -18,7 +19,7 @@ class MyClosetAddForm extends Component {
         modal: false
     };
 
-    activeUserId = parseInt(sessionStorage.getItem("userId"))
+    activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
     toggle = () => {
         this.setState(prevState => ({
@@ -40,6 +41,7 @@ class MyClosetAddForm extends Component {
         } else {
             this.setState({ loadingStatus: true });
             const addedItem = {
+                userId: this.state.userId,
                 name: this.state.itemName,
                 quality: this.state.quality,
                 color: this.state.color,
@@ -151,5 +153,4 @@ class MyClosetAddForm extends Component {
         );
     }
 }
-
 export default MyClosetAddForm;

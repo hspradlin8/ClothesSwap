@@ -8,7 +8,8 @@ import { Modal, ModalHeader, ModalBody, } from "reactstrap";
 class OtherClosetCard extends Component {
 
     state = {
-        modal: false
+        modal: false,
+        otherUserItem: ""
     };
 
     toggle = () => {
@@ -23,6 +24,11 @@ class OtherClosetCard extends Component {
         APIManager.delete("items", id)
             .then(() => { this.props.getData() }
             );
+    }
+    componentDidMount(){
+            if (this.props.item.userId !== this.props.currentUser) { 
+            this.setState({otherUserItem: this.props.item})
+            }
     }
 
     render() {
@@ -40,15 +46,15 @@ class OtherClosetCard extends Component {
                             <span className="card-itemTitle"></span>
                         </h3>
 
-                        {/* <p>Item Size:{this.props.item.itemSize}</p>
+                        <p>Item Size:{this.props.item.size}</p>
                        
-                        <p>Item Color:{this.props.item.itemColor}</p>
+                        <p>Item Color:{this.props.item.color}</p>
                        
-                        <p>Item Quality:{this.props.item.itemQuality}</p>
+                        <p>Item Quality:{this.props.item.quality}</p>
 
-                        <p>Item Type: {this.props.item.itemType}</p>
+                        <p>Item Type: {this.props.item.type}</p>
 
-                        <p>Item Description: {this.props.item.itemDescription}</p> */}
+                        <p>Item Description: {this.props.item.description}</p>
 
                         <button
                             type="button" className="delete-item"

@@ -23,7 +23,7 @@ class MyClosetDetail extends Component {
     }
     componentDidMount() {
         //get(id) from MyClosetManager and hang on to that data; put it into state
-        MyClosetManager.get(this.props.itemId)
+        APIManager.get(this.props.itemId)
             .then((item) => {
                 this.setState({
                     // id: this.props.item.id,

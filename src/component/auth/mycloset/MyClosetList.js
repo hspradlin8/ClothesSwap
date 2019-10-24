@@ -10,7 +10,7 @@ class MyClosetList extends Component {
     modal: false
   };
 
-  activeUserId = parseInt(sessionStorage.getItem("userId"))
+  activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
 
   toggle = () => {
@@ -37,7 +37,7 @@ class MyClosetList extends Component {
 
   componentDidMount() {
     //getAll from APIManager and hang on to that data; put it in state
-    APIManager.getAll("items", this.activeUserId).then(items => {
+    APIManager.getAllMyClothes("items",parseInt(this.props.currentUser)).then(items => {
       this.setState({
         items: items
       });

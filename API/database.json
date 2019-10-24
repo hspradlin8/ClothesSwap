@@ -27,29 +27,31 @@
   ],
   "items": [
     {
-      "id": 1,
-      "name": "Shirt",
-      "quality": "Good",
-      "color": "orange",
-      "size": "small",
-      "description": "cotton"
-    },
-    {
-      "name": "pants",
-      "quality": "poor",
-      "color": "black",
-      "size": "Medium",
-      "description": "jeans",
-      "type": "jean",
-      "id": 2
-    },
-    {
-      "id": 3,
+      "userId": 2,
       "name": "Pant ",
-      "quality": "fair",
-      "color": "Red",
+      "quality": "Good",
+      "color": "Red ",
       "size": "Medium",
-      "description": "pants"
+      "description": "Knit",
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "name": "Pant ",
+      "quality": "Good",
+      "color": "Yellow ",
+      "size": "Medium",
+      "description": "Cotton",
+      "id": 5
+    },
+    {
+      "userId": 3,
+      "name": "T-shirt ",
+      "quality": "Good ",
+      "color": "Multi",
+      "size": "Small",
+      "description": "Tie-Die",
+      "id": 6
     }
   ]
 }

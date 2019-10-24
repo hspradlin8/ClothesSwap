@@ -40,9 +40,18 @@ class App extends Component {
 
   }
   componentDidMount() {
-    this.setState({
-      user: this.isAuthenticated()
-    })
+    if(this.isAuthenticated()){
+      this.setState({
+        user: this.isAuthenticated(),
+        currentUser:sessionStorage.getItem("credentials") 
+      })
+      
+    }else{
+      this.setState({
+        user: this.isAuthenticated()
+      })
+    }
+
   }
 
   render() {
