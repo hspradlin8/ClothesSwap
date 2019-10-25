@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import OtherClosetCard from "../findNewClothes/OtherClosetCard";
-import APIManager from "../../modules/APIManager";
-// import OtherClosetAddForm from "./OtherClosetAddForm"
+import OtherClosetCard from "./OtherClosetCard";
+import APIManager from "../modules/APIManager";
+
 
 class OtherClosetList extends Component {
   //define what this component needs to render
@@ -34,7 +34,7 @@ class OtherClosetList extends Component {
       items: items
     })
   });
-
+// where the id is user specific- only gettting items related to the userId for other closet list.
   componentDidMount() {
     let notMyItems = []
     //getAll from APIManager and hang on to that data; put it in state
@@ -47,7 +47,6 @@ class OtherClosetList extends Component {
       });
     
     }).then(() =>{
-      console.log(notMyItems);
       this.setState({
         items: notMyItems
       });

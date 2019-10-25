@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import APIManager from "../../modules/APIManager";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import APIManager from "../modules/APIManager";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from "reactstrap";
 
 
 class MyClosetAddForm extends Component {
@@ -10,9 +10,9 @@ class MyClosetAddForm extends Component {
     state = {
         userId: sessionStorage.getItem("credentials"),
         itemName: "",
-        quality: "",
-        color: "",
-        // type: "",
+        quality:[],
+        color: [],
+        type: [],
         size: "",
         description: "",
         loadingStatus: true,
@@ -36,26 +36,51 @@ class MyClosetAddForm extends Component {
     addItem = evt => {
         evt.preventDefault();
         this.toggle();
-        if (this.state.itemName === ""|| this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === "") {
+        if (this.state.itemName === "" || this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === "") {
             window.alert("Please input an Item");
         } else {
             this.setState({ loadingStatus: true });
             const addedItem = {
                 userId: this.state.userId,
                 name: this.state.itemName,
-                quality: this.state.quality,
-                color: this.state.color,
+                quality: this.state.qualityId,
+                color: this.state.colorId,
                 size: this.state.size,
                 description: this.state.description,
-                // type: this.state.type,
+                clothingType: this.state.typeId,
 
             };
 
             APIManager.post("items", addedItem)
                 .then(() => { this.props.getData() }
                 );
+
         };
+    
     }
+// drop down section
+    componentDidMount() {
+        APIManager.getAll("quality")
+        .then((response) => {
+            this.setState({
+                quality: response
+            })
+        });
+        APIManager.getAll("colors")
+        .then((response) => {
+            // console.log(response)
+            this.setState({
+                color: response
+            })
+        });
+        APIManager.getAll("type")
+        .then((response) => {
+            this.setState({
+                type: response
+            })
+        })
+    }
+
     render() {
         const closeBtn = (
             <button className="close" onClick={this.toggle}>
@@ -65,6 +90,37 @@ class MyClosetAddForm extends Component {
         return (
             <>
                 {" "}
+                {/* drop down section */}
+                <form>
+                <label>Quality</label>
+                <Input type="select" id="qualityId" onChange={this.handleFieldChange}>
+                    { 
+                        this.state.quality.map(qual =>  
+                    <option key={qual.id} value={qual.id}>{qual.name}</option>
+                    )
+
+                    }
+                </Input>
+                <label>Colors</label>
+                <Input type="select" id="colorId" onChange={this.handleFieldChange}>
+                    { 
+                        this.state.color.map(col =>  
+                    <option key={col.id} value={col.id}>{col.name}</option>
+                    )
+
+                    }
+                </Input>
+                <label>Type</label>
+                <Input type="select" id="typeId" onChange={this.handleFieldChange}>
+                    { 
+                        this.state.type.map(ty =>  
+                    <option key={ty.id} value={ty.id}>{ty.name}</option>
+                    )
+
+                    }
+                </Input>
+                </form>
+                {/* drop down section ends */}
                 <Button className="addItem" onClick={this.toggle}>
                     Add Item</Button>
                 <Modal
@@ -78,6 +134,7 @@ class MyClosetAddForm extends Component {
                     <ModalBody>
                         <form>
                             <fieldset>
+
                                 <div className="formgrid">
                                     <label htmlFor="itemName">
                                         Item Name:
@@ -115,14 +172,14 @@ class MyClosetAddForm extends Component {
                                         id="color"
                                         placeholder="Item Color"
                                     />
-                                     {/* <label htmlFor="type">Type:</label>
+                                    <label htmlFor="clothingType">Type:</label>
                                     <input
                                         type="text"
                                         required
                                         onChange={this.handleFieldChange}
-                                        id="type"
+                                        id="clothingType"
                                         placeholder="Item Type"
-                                    /> */}
+                                    />
                                     <label htmlFor="itemDescription">Description:</label>
                                     <input
                                         type="text"

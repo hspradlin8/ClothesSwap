@@ -8,7 +8,7 @@ class MyClosetDetail extends Component {
         itemName: "",
         quality: "",
         color: "",
-        // type: "",
+        type: "",
         size: "",
         description: "",
         url: "",
@@ -28,9 +28,10 @@ class MyClosetDetail extends Component {
                 this.setState({
                     // id: this.props.item.id,
                     itemName: this.state.itemName,
-                    quality: this.state.quality,
-                    color: this.state.color,
+                    quality: this.state.qualityId,
+                    color: this.state.colorId,
                     size: this.state.size,
+                    type: this.state.typeId,
                     description: this.state.description,
                     url: item.url,
                     loadingStatus: false
