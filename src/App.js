@@ -3,7 +3,7 @@ import ApplicationViews from "./component/auth/ApplicationViews";
 import NavBar from "./component/nav/NavBar";
 import Register from "./component/auth/Login";
 import Login from "./component/auth/Register";
-import About from "./component/auth/About";
+import About from "./component/About";
 
 
 

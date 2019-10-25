@@ -27,31 +27,222 @@
   ],
   "items": [
     {
-      "userId": 2,
+      "userId": "2",
       "name": "Pant ",
       "quality": "Good",
-      "color": "Red ",
+      "color": "Red",
       "size": "Medium",
+      "description": "Trousers",
+      "id": 1
+    },
+    {
+      "userId": "2",
+      "name": "Sweater ",
+      "quality": "Fair",
+      "color": "Maroon",
+      "size": "Large",
       "description": "Knit",
+      "id": 2
+    },
+    {
+      "userId": "2",
+      "name": "Dress",
+      "quality": "fair",
+      "color": "black",
+      "size": "small",
+      "description": "cotton",
+      "id": 3
+    },
+    {
+      "userId": "2",
+      "name": "shirt ",
+      "quality": "good ",
+      "color": "yellow",
+      "size": "med",
+      "description": "blouse ",
       "id": 4
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "name": "red"
     },
     {
-      "userId": 2,
-      "name": "Pant ",
-      "quality": "Good",
-      "color": "Yellow ",
-      "size": "Medium",
-      "description": "Cotton",
-      "id": 5
+      "id": 2,
+      "name": "blue"
     },
     {
-      "userId": 3,
-      "name": "T-shirt ",
-      "quality": "Good ",
-      "color": "Multi",
-      "size": "Small",
-      "description": "Tie-Die",
-      "id": 6
+      "id": 3,
+      "name": "purple"
+    },
+    {
+      "id": 4,
+      "name": "orange"
+    },
+    {
+      "id": 5,
+      "name": "pink"
+    },
+    {
+      "id": 6,
+      "name": "yellow"
+    },
+    {
+      "id": 7,
+      "name": "white"
+    },
+    {
+      "id": 8,
+      "name": "green"
+    },
+    {
+      "id": 9,
+      "name": "gray"
+    },
+    {
+      "id": 10,
+      "name": "black"
+    },
+    {
+      "id": 11,
+      "name": "brown"
+    },
+    {
+      "id": 12,
+      "name": "khaki"
+    },
+    {
+      "id": 13,
+      "name": "olive"
+    },
+    {
+      "id": 14,
+      "name": "teal"
+    },
+    {
+      "id": 15,
+      "name": "plum"
+    },
+    {
+      "id": 16,
+      "name": "maroon"
+    },
+    {
+      "id": 17,
+      "name": "coral"
+    },
+    {
+      "id": 18,
+      "name": "navy"
+    },
+    {
+      "id": 19,
+      "name": "cyan"
+    },
+    {
+      "id": 20,
+      "name": "lime"
+    }
+  ],
+  "quality": [
+    {
+      "id": 1,
+      "name": "poor"
+    },
+    {
+      "id": 2,
+      "name": "fair"
+    },
+    {
+      "id": 3,
+      "name": "good"
+    },
+    {
+      "id": 4,
+      "name": "excellent"
+    }
+  ],
+  "type": [
+    {
+      "id": 1,
+      "name": "sweater"
+    },
+    {
+      "id": 2,
+      "name": "t-shirt"
+    },
+    {
+      "id": 3,
+      "name": "long sleeve"
+    },
+    {
+      "id": 4,
+      "name": "tank top"
+    },
+    {
+      "id": 5,
+      "name": "jacket"
+    },
+    {
+      "id": 6,
+      "name": "cardigan"
+    },
+    {
+      "id": 7,
+      "name": "blouse"
+    },
+    {
+      "id": 8,
+      "name": "jeans"
+    },
+    {
+      "id": 9,
+      "name": "trousers"
+    },
+    {
+      "id": 10,
+      "name": "workout pants"
+    },
+    {
+      "id": 11,
+      "name": "leggings"
+    },
+    {
+      "id": 12,
+      "name": "shirt"
+    },
+    {
+      "id": 13,
+      "name": "dress"
+    },
+    {
+      "id": 14,
+      "name": "heels"
+    },
+    {
+      "id": 15,
+      "name": "sandals"
+    },
+    {
+      "id": 16,
+      "name": "sneakers"
+    },
+    {
+      "id": 17,
+      "name": "running shoes"
+    },
+    {
+      "id": 18,
+      "name": "boots"
+    },
+    {
+      "id": 19,
+      "name": "hat"
+    },
+    {
+      "id": 20,
+      "name": "scarf"
     }
   ]
 }

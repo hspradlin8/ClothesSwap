@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MyClosetCard from "./MyClosetCard";
-import APIManager from "../../modules/APIManager";
-import MyClosetAddForm from "./MyClosetAddForm"
+import APIManager from "../modules/APIManager";
+import MyClosetAddForm from "./MyClosetAddForm";
 
 class MyClosetList extends Component {
   //define what this component needs to render
@@ -23,7 +23,7 @@ class MyClosetList extends Component {
     APIManager.delete("items", id).then(() => {
       APIManager.getAll("items").then(newItems => {
         this.setState({
-            items: newItems
+          items: newItems
         });
       });
     });
@@ -37,7 +37,7 @@ class MyClosetList extends Component {
 
   componentDidMount() {
     //getAll from APIManager and hang on to that data; put it in state
-    APIManager.getAllMyClothes("items",parseInt(this.props.currentUser)).then(items => {
+    APIManager.getAllMyClothes("items", parseInt(this.props.currentUser)).then(items => {
       this.setState({
         items: items
       });
@@ -48,12 +48,12 @@ class MyClosetList extends Component {
     return (
       <>
         <div className="items-container">
-        <div className="items-intro">
-          <h1>Items</h1>
-          {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
+          <div className="items-intro">
+            <h1>Items</h1>
+            {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
           <MyClosetAddForm key={this.props.currentUser} {...this.props}
-          getData={this.getData} />
+            getData={this.getData} />
           <div className="item-container-cards">
             {this.state.items.map(item => (
               <MyClosetCard

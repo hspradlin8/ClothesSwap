@@ -17,7 +17,7 @@ class NavBar extends Component {
                 </h1>
                 <nav>
                 <ul className="container">
-            <li><Link className="nav-link" to="/">Home</Link></li>
+            <li><Link className="nav-link" to="/home">Home</Link></li>
             <li><Link className="nav-link" to="/myCloset">My Closet</Link></li>
             {!this.props.user && 
             <li><Link className="nav-link" to="/login">Login</Link></li>

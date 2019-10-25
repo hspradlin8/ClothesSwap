@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import APIManager from "../../modules/APIManager";
-import OtherClosetEditForm from "./OtherClosetEditForm";
-import { Modal, ModalHeader, ModalBody, } from "reactstrap";
+import APIManager from "../modules/APIManager";
+import MyClosetEditForm from "./myClosetEditForm";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
+// import { } from 'reactstrap';
 
 
 
-class OtherClosetCard extends Component {
+class MyClosetCard extends Component {
 
     state = {
-        modal: false,
-        otherUserItem: ""
+        modal: false
+        // dropDownToggle: false
     };
 
     toggle = () => {
@@ -18,17 +19,12 @@ class OtherClosetCard extends Component {
         }));
     }
 
-    activeUserId = parseInt(sessionStorage.getItem("userId"))
+    activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
     handleDelete = id => {
         APIManager.delete("items", id)
             .then(() => { this.props.getData() }
             );
-    }
-    componentDidMount(){
-            if (this.props.item.userId !== this.props.currentUser) { 
-            this.setState({otherUserItem: this.props.item})
-            }
     }
 
     render() {
@@ -37,24 +33,29 @@ class OtherClosetCard extends Component {
                 &times;
 			</button>
         );
+       
+            // const [dropdownOpen, setDropdownOpen] = useState(false);
+       
+
         return (
             <>
                 <div className="item-card">
+                
                     <div className="card-content">
-                        <h3>
-                            Item Name:{this.props.item.itemName}
-                            <span className="card-itemTitle"></span>
-                        </h3>
+                        <p>
+                            Item Name:{this.props.item.name}
+                            {/* <span className="card-itemTitle"></span> */}
+                        </p>
 
-                        <p>Item Size:{this.props.item.size}</p>
-                       
-                        <p>Item Color:{this.props.item.color}</p>
-                       
-                        <p>Item Quality:{this.props.item.quality}</p>
+                        <p>Size:{this.props.item.size}</p>
 
-                        <p>Item Type: {this.props.item.type}</p>
+                        <p>Color:{this.props.item.colorId}</p>
 
-                        <p>Item Description: {this.props.item.description}</p>
+                        <p>Quality:{this.props.item.qualityId}</p>
+
+                        <p>Type:{this.props.item.typeId}</p>
+
+                        <p>Description: {this.props.item.description}</p>
 
                         <button
                             type="button" className="delete-item"
@@ -83,7 +84,7 @@ class OtherClosetCard extends Component {
                                 Edit Item
 							</ModalHeader>
                             <ModalBody>
-                                <OtherClosetEditForm
+                                <MyClosetEditForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}
@@ -102,4 +103,4 @@ class OtherClosetCard extends Component {
     }
 }
 
-export default OtherClosetCard;
+export default MyClosetCard;

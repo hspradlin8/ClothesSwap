@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import MyClosetList from './mycloset/MyClosetList';
-import OtherClosetList from './findNewClothes/OtherClosetList';
+import MyClosetList from '../mycloset/MyClosetList';
+import OtherClosetList from '../findNewClothes/OtherClosetList';
 import Login from "./Login";
 
 
