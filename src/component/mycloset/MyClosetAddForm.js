@@ -44,6 +44,7 @@ class MyClosetAddForm extends Component {
                 userId: this.state.userId,
                 name: this.state.itemName,
                 quality: this.state.qualityId,
+                type: this.state.typeId,
                 color: this.state.colorId,
                 size: this.state.size,
                 description: this.state.description,

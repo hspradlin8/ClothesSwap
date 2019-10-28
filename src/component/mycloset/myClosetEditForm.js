@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
-import { Button, ModalBody, ModalFooter } from "reactstrap";
+import { Button, ModalBody, ModalFooter, Input } from "reactstrap";
 
 
 class MyClosetEditForm extends Component {
     //set the initial state
     state = {
         itemName: "",
-        quality: "",
-        color: "",
-        type: "",
+        quality: [],
+        color: [],
+        type: [],
         size: "",
         description: "",
-        loadingStatus: true,
+        loadingStatus: false,
         modal: false,
         activeUser: parseInt(sessionStorage.getItem("credentials"))
     };
@@ -25,38 +25,61 @@ class MyClosetEditForm extends Component {
 
     updateExistingItem = evt => {
         evt.preventDefault();
-        this.setState({ loadingStatus: true });
+        this.setState({ loadingStatus: false });
         const editedItem = {
             id: parseInt(this.props.itemId),
             itemName: this.state.itemName,
             quality: this.state.qualityId,
+            type: this.state.typeId,
             color: this.state.colorId,
             size: this.state.size,
-            type: this.state.typeId,
             description: this.state.description
         };
-        console.log(editedItem)
+        //console.log(editedItem)
         APIManager.update("items", editedItem)
             .then(() => { this.props.getData() }
             );
     }
 
-
     componentDidMount() {
-        return APIManager.get("items", this.props.itemId)
-            .then(
-                item => {
+        APIManager.getAll("quality")
+            .then((response) => {
+                this.setState({
+                    quality: response
+                })
+            })
+            .then(APIManager.getAll("type")
+                .then((response) => {
+                    // console.log(response)
                     this.setState({
-                        itemName: item.name,
-                        quality: item.quality,
-                        color: item.color,
-                        size: item.size,
-                        type: item.typeId,
-                        description: item.description,
-                        loadingStatus: false,
-                    });
-                });
+                        type: response
+                    })
+                }))
+
+            .then(APIManager.getAll("color")
+                .then((response) => {
+                    // console.log(response)
+                    this.setState({
+                        color: response
+                    })
+                }))
+
+            .then(APIManager.get("items", this.props.itemId)
+                .then(item => {
+                        console.log(item);
+
+                        this.setState({
+                            itemName: item.itemName,
+                            quality: item.quality,
+                            color: item.color,
+                            size: item.size,
+                            type: item.typeId,
+                            description: item.description,
+                            loadingStatus: false,
+                        })
+                    }));
     };
+
 
     render() {
         // console.log(this.state.itemName)
@@ -76,51 +99,66 @@ class MyClosetEditForm extends Component {
                                     value={this.state.itemName}
                                 />
 
-                                <label htmlFor="quality">Quality: </label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                 id="quality"
-                                value={this.state.quality}
-                            />
-                            <label htmlFor="venue">Color: </label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="color"
-                                value={this.state.color}
-                            />
-                            <label htmlFor="venue">Size: </label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="size"
-                                value={this.state.size}
-                            />
-                               <label htmlFor="venue">Type: </label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="type"
-                                value={this.state.type}
-                            />
-                            <label htmlFor="venue">Description: </label>
-                            <input
-                                type="text"
-                                required
-                                className="form-control"
-                                onChange={this.handleFieldChange}
-                                id="description"
-                                value={this.state.description}
-                            />
+                                <label htmlFor="quality">Quality</label>
+                                <Input
+                                    type="select"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="qualityId">
+                                    {
+                                        this.state.quality.map(qual =>
+                                            <option key={qual.id} value={qual.id}>{qual.name}</option>
+                                        )
+
+                                    }
+                                </Input>
+                                <label htmlFor="venue">Color: </label>
+                                <Input
+                                    type="select"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="colorId">
+                                    {
+                                        this.state.color.map(col =>
+                                            <option key={col.id} value={col.id}>{col.name}</option>
+                                        )
+
+                                    }
+                                </Input>
+                                <label htmlFor="venue">Size: </label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="size"
+                                    value={this.state.size}
+                                />
+                                <label htmlFor="venue">Type: </label>
+                                <Input
+                                    type="select"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="typeId">
+                                    {
+                                        this.state.type.map(ty =>
+                                            <option key={ty.id} value={ty.id}>{ty.name}</option>
+                                        )
+
+                                    }
+                                </Input>
+                                <label htmlFor="venue">Description: </label>
+                                <input
+                                    type="text"
+                                    required
+                                    className="form-control"
+                                    onChange={this.handleFieldChange}
+                                    id="description"
+                                    value={this.state.description}
+                                />
                             </div>
                             <div className="alignRight"></div>
                         </fieldset>
@@ -146,6 +184,4 @@ class MyClosetEditForm extends Component {
         );
     }
 }
-
-
 export default MyClosetEditForm;
