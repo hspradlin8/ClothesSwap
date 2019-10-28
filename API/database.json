@@ -27,21 +27,12 @@
   ],
   "items": [
     {
-      "id": 2,
-      "itemName": "Iron Maiden",
-      "quality": 2,
-      "size": "Large",
-      "type": 16,
-      "color": 1,
-      "description": "Knit"
-    },
-    {
       "id": 3,
       "itemName": "Help",
-      "quality": 2,
+      "quality": 1,
+      "type": 15,
+      "color": 2,
       "size": "small",
-      "type": 16,
-      "color": 1,
       "description": "cotton"
     },
     {

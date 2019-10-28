@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MyClosetCard from "./MyClosetCard";
 import APIManager from "../modules/APIManager";
-import MyClosetAddForm from "./MyClosetAddForm";
+// import MyClosetAddForm from "./MyClosetAddForm";
 
 class MyClosetList extends Component {
   //define what this component needs to render
@@ -17,7 +17,7 @@ class MyClosetList extends Component {
 
 
   toggle = () => {
-    console.log("test");
+    // console.log("test");
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
@@ -33,18 +33,7 @@ class MyClosetList extends Component {
     });
   };
 
-  getData = () => APIManager.getAll("items", this.activeUserId).then(items => {
-    //console.log("all", items);
-    // items.forEach(e => {
-    //   e.type = this.state.type.filter(t => t.id === e.type)
-    // });
-    this.setState({
-      items: items
-    })
-  });
-
-
-  componentDidMount() {
+  getData = () => {
     let types = []
     APIManager.getAll("type")
       .then((type) => {
@@ -55,14 +44,14 @@ class MyClosetList extends Component {
         let colors = []
         APIManager.getAll("color")
           .then((color) => {
-            console.log(color)
+            // console.log(color)
             colors = color
           }).then(() => {
 
             let qualitys = []
             APIManager.getAll("quality")
               .then((quality) => {
-                console.log(quality)
+                // console.log(quality)
                 qualitys = quality
               }).then(() => {
 
@@ -75,9 +64,10 @@ class MyClosetList extends Component {
                     e.color = col[0].name;
                     var qual = qualitys.filter(q => q.id === e.quality);
                     e.quality = qual[0].name;
-                    //console.log('items after filter',items);
+                    // console.log('items after filter',items);
                     filteredArray.push(e)
-                    console.log('filtered array', filteredArray)
+                    
+                    console.log('give me e', e)
                   })
                   this.setState({
                     items: filteredArray
@@ -90,6 +80,11 @@ class MyClosetList extends Component {
 
           })
       })
+  }
+
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
