@@ -33,27 +33,27 @@ class MyClosetCard extends Component {
                 &times;
 			</button>
         );
-       
-            // const [dropdownOpen, setDropdownOpen] = useState(false);
-       
+
+        // const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
         return (
             <>
                 <div className="item-card">
-                
+
                     <div className="card-content">
                         <p>
-                            Item Name:{this.props.item.name}
+                            Item Name:{this.props.item.itemName}
                             {/* <span className="card-itemTitle"></span> */}
                         </p>
 
                         <p>Size:{this.props.item.size}</p>
 
-                        <p>Color:{this.props.item.colorId}</p>
+                        <p>Color:{this.props.item.color}</p>
 
-                        <p>Quality:{this.props.item.qualityId}</p>
+                        <p>Quality:{this.props.item.quality}</p>
 
-                        <p>Type:{this.props.item.typeId}</p>
+                        <p>Type:{this.props.item.type}</p>
 
                         <p>Description: {this.props.item.description}</p>
 
