@@ -36,15 +36,6 @@ class MyClosetAddForm extends Component {
         this.setState(stateToChange);
     };
 
-    // search = () => {
-    //     let itemName = this.state.itemName;
-    //     let quality = document.getElementById("quality");
-    //     let brandValue = brand.value
-    //     let productValue = productType.value
-    //     // console.log(brandValue, productValue)
-    //     this.props.getData(brandValue, productValue)
-
-    // }
 
     addItem = evt => {
         evt.preventDefault();
@@ -124,24 +115,7 @@ class MyClosetAddForm extends Component {
                     <ModalBody>
                         <form>
                             <fieldset>
-                                <Input
-                                    className="form-control"
-                                    type="search"
-                                    id="productType"
-                                    placeholder="Search Product"
-                                    aria-label="Search"
-                                    onChange={this.handleFieldChange}
-                                ></Input>
-                                <Button
-                                    className="button"
-                                    type="submit"
-                                    required
-                                    onClick={this.search}
-
-                                >
-                                    Search
-                                 </Button>
-
+                                
                                 <div className="formgrid">
                                     <label htmlFor="itemName">Item Name:</label>
 									

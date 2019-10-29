@@ -43,7 +43,7 @@ class OtherClosetCard extends Component {
                  {/* <div className="searchBar"></div> */}
                     <div className="card-content">
                         <h3>
-                            Item Name:{this.props.item.itemName}
+                            Item Name:{this.props.item.name}
                             <span className="card-itemTitle"></span>
                         </h3>
 
@@ -53,11 +53,11 @@ class OtherClosetCard extends Component {
 
                         <p>Item Quality:{this.props.item.quality}</p>
 
-                        <p>Item Type: {this.props.item.typeId}</p>
+                        <p>Item Type: {this.props.item.type}</p>
 
                         <p>Item Description: {this.props.item.description}</p>
 
-                        <button
+                        {/* <button
                             type="button" className="delete-item"
                             onClick={() =>
                                 this.handleDelete(this.props.item.id)
@@ -73,7 +73,7 @@ class OtherClosetCard extends Component {
                             }}
                         >
                             Edit
-						</button>
+						</button> */}
 
                         <Modal
                             isOpen={this.state.modal}
@@ -84,7 +84,7 @@ class OtherClosetCard extends Component {
                                 Edit Item
 							</ModalHeader>
                             <ModalBody>
-                                {/* <OtherClosetEditForm
+                                {/* <OtherClosetForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}

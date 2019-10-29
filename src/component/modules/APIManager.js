@@ -7,6 +7,9 @@ export default {
   getAll(resource) {
     return fetch(`${remoteURL}/${resource}`).then(result => result.json())
   },
+  getAllNotMyClothes(resource, userId) {
+    return fetch(`${remoteURL}/${resource}?userId=/=${userId}`).then(result => result.json())
+  },
   getAllMyClothes(resource, userId) {
     return fetch(`${remoteURL}/${resource}?userId=${userId}`).then(result => result.json())
   },
