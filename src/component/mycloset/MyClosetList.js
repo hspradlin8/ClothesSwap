@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MyClosetCard from "./MyClosetCard";
 import APIManager from "../modules/APIManager";
-// import MyClosetAddForm from "./MyClosetAddForm";
+import MyClosetAddForm from "./MyClosetAddForm";
 
 class MyClosetList extends Component {
   //define what this component needs to render
@@ -54,27 +54,35 @@ class MyClosetList extends Component {
                 // console.log(quality)
                 qualitys = quality
               }).then(() => {
+                // console.log(this.props.currentUser)
 
                 APIManager.getAllMyClothes("items", parseInt(this.props.currentUser)).then(items => {
+                  // console.log("HERE", items, this.props.currentUser)
                   let filteredArray = []
                   items.forEach(e => {
-                    var ty = types.filter(t => t.id === e.type);
-                    e.type = ty[0].name;
-                    var col = colors.filter(c => c.id === e.color);
-                    e.color = col[0].name;
-                    var qual = qualitys.filter(q => q.id === e.quality);
-                    e.quality = qual[0].name;
+                    if (e.type !== null) {
+                      var ty = types.filter(t => t.id === e.type);
+                      e.type = ty[0].name;
+                    }
+                    if (e.color !== null) {
+                      var col = colors.filter(c => c.id === e.color);
+                      e.color = col[0].name;
+                    }
+                    if (e.quality !== null) {
+                      var qual = qualitys.filter(q => q.id === e.quality);
+                      e.quality = qual[0].name;
+                    }
                     // console.log('items after filter',items);
                     filteredArray.push(e)
-                    
-                    console.log('give me e', e)
+
+                    // console.log('give me e', e)
                   })
                   this.setState({
                     items: filteredArray
                   })
                 })
-                  
-                
+
+
 
               })
 
@@ -88,17 +96,19 @@ class MyClosetList extends Component {
   }
 
   render() {
-    console.log('state at render', this.state.items)
+    // console.log('state at render', this.state.items)
     return (
       <>
-      
+
         <div className="items-container">
           <div className="items-intro">
             <h1>Items</h1>
             {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
-          {/* <MyClosetAddForm key={this.props.currentUser} {...this.props}
-            getData={this.getData} /> */}
+          <MyClosetAddForm
+            key={this.props.currentUser}
+            {...this.props}
+            getData={this.getData} />
           <div className="item-container-cards">
             {this.state.items.map(item => (
               <MyClosetCard
@@ -106,6 +116,7 @@ class MyClosetList extends Component {
                 item={item}
                 deleteItem={this.deleteItem}
                 {...this.props}
+                currentUser={this.props.currentUser}
                 getData={this.getData}
               />
             ))}

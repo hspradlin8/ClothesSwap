@@ -6,6 +6,7 @@ import { Button, ModalBody, ModalFooter, Input } from "reactstrap";
 class MyClosetEditForm extends Component {
     //set the initial state
     state = {
+        // userId: 2,
         itemName: "",
         qualityArray: [],
         quality: "",
@@ -19,7 +20,7 @@ class MyClosetEditForm extends Component {
         modal: false,
         activeUser: parseInt(sessionStorage.getItem("credentials")),
         pageLoaded: false
-        
+
     };
 
     handleFieldChange = evt => {
@@ -29,19 +30,20 @@ class MyClosetEditForm extends Component {
     };
 
     updateExistingItem = evt => {
+        console.log("evt", parseInt(this.props.userId))
         evt.preventDefault();
         this.setState({ loadingStatus: false });
         const editedItem = {
+            userId: parseInt(this.state.userId),
             id: parseInt(this.props.itemId),
-            itemName: this.state.itemName,
+            name: this.state.itemName,
             quality: parseInt(this.state.quality),
             type: parseInt(this.state.type),
             color: parseInt(this.state.color),
             size: this.state.size,
             description: this.state.description
         };
-        //editedItem returns NaN if not changed??  User must change every field
-        // console.log('edited', editedItem)
+        console.log('edited', editedItem)
         APIManager.update("items", editedItem)
             .then(() => { this.props.getData() }
             );
@@ -72,10 +74,13 @@ class MyClosetEditForm extends Component {
 
             .then(APIManager.get("items", this.props.itemId)
                 .then(item => {
-                        console.log('item before state', item);
-
+                    console.log('item before state', item);
+                    console.log("userId");
+                    
+                    if (item.color !== NaN && item.quality !== NaN && item.type !== NaN) {
                         this.setState({
-                            itemName: item.itemName,
+                            userId: item.userId,
+                            itemName: item.name,
                             quality: parseInt(item.quality),
                             color: item.color,
                             size: item.size,
@@ -83,17 +88,23 @@ class MyClosetEditForm extends Component {
                             description: item.description,
                             loadingStatus: false,
                         })
-                        // console.log('state after obj', this.state.quality)
-                    })).then(() => {
-                        this.setState({
-                            pageLoaded: true
-                        })
+
+                    }else{
+                        alert("Please fill out all sections")
+                    }
+
+                    console.log("userIdkjh", this.state.userId);
+                })).then(() => {
+                    this.setState({
+                        pageLoaded: true
                     })
+                    console.log("userId2", this.state.userId);
+                })
     };
 
 
     render() {
-        console.log('itemname state', this.state.colorArray)
+        // console.log('itemname state', this.state.colorArray)
         return (
             <>
                 <ModalBody>
@@ -112,36 +123,36 @@ class MyClosetEditForm extends Component {
 
                                 <label htmlFor="quality">Quality:</label>
                                 {this.state.pageLoaded &&
-                                <Input
-                                    type="select"
-                                    required
-                                    className="form-control"
-                                    onChange={this.handleFieldChange}
-                                    id="quality"
-                                    value={this.state.quality}>
-                                    {this.state.qualityArray.map(qual =>
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="quality"
+                                        value={this.state.quality}>
+                                        {this.state.qualityArray.map(qual =>
                                             <option key={qual.id} value={qual.id}>{qual.name}</option>
                                         )
 
-                                    }
-                                </Input>
+                                        }
+                                    </Input>
                                 }
-                                
+
                                 <label htmlFor="color">Color:</label>
                                 {this.state.pageLoaded &&
-                                <Input
-                                    type="select"
-                                    required
-                                    className="form-control"
-                                    onChange={this.handleFieldChange}
-                                    id="color"
-                                    value={this.state.color}>
-                                    {this.state.colorArray.map(col =>
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="color"
+                                        value={this.state.color}>
+                                        {this.state.colorArray.map(col =>
                                             <option key={col.id} value={col.id}>{col.name}</option>
                                         )
 
-                                    }
-                                </Input>
+                                        }
+                                    </Input>
                                 }
                                 <label htmlFor="venue">Size: </label>
                                 <input
@@ -154,19 +165,19 @@ class MyClosetEditForm extends Component {
                                 />
                                 <label htmlFor="type">Type: </label>
                                 {this.state.pageLoaded &&
-                                <Input
-                                    type="select"
-                                    required
-                                    className="form-control"
-                                    onChange={this.handleFieldChange}
-                                    id="type"
-                                    value={this.state.type}>
-                                    {this.state.typeArray.map(ty =>
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="type"
+                                        value={this.state.type}>
+                                        {this.state.typeArray.map(ty =>
                                             <option key={ty.id} value={ty.id}>{ty.name}</option>
                                         )
 
-                                    }
-                                </Input>
+                                        }
+                                    </Input>
                                 }
                                 <label htmlFor="venue">Description: </label>
                                 <input
@@ -189,6 +200,7 @@ class MyClosetEditForm extends Component {
                         onClick={evt => {
                             this.updateExistingItem(evt);
                             this.props.toggle();
+                            console.log("button fires");
                         }}
                         className="btn btn-primary"
                     >
