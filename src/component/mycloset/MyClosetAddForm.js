@@ -10,9 +10,12 @@ class MyClosetAddForm extends Component {
     state = {
         userId: sessionStorage.getItem("credentials"),
         itemName: "",
-        quality:[],
-        color: [],
-        type: [],
+        qualityArray: [],
+        quality: "",
+        colorArray: [],
+        color: "",
+        type: "",
+        typeArray: [],
         size: "",
         description: "",
         loadingStatus: true,
@@ -33,53 +36,69 @@ class MyClosetAddForm extends Component {
         this.setState(stateToChange);
     };
 
+    // search = () => {
+    //     let itemName = this.state.itemName;
+    //     let quality = document.getElementById("quality");
+    //     let brandValue = brand.value
+    //     let productValue = productType.value
+    //     // console.log(brandValue, productValue)
+    //     this.props.getData(brandValue, productValue)
+
+    // }
+
     addItem = evt => {
         evt.preventDefault();
         this.toggle();
-        if (this.state.itemName === "" || this.state.quality === "" || this.state.color === "" || this.state.description === "" || this.state.size === "") {
+        console.log(this.state)
+        if (this.state.quality === "" || this.state.color === ""|| this.state.type === "") 
+        {
             window.alert("Please input an Item");
-        } else {
+        } 
+        else 
+        {
             this.setState({ loadingStatus: true });
             const addedItem = {
-                userId: this.state.userId,
+                userId: parseInt(this.state.userId),
                 name: this.state.itemName,
-                quality: this.state.qualityId,
-                type: this.state.typeId,
-                color: this.state.colorId,
+                quality: parseInt(this.state.qualityId),
+                type: parseInt(this.state.typeId),
+                color: parseInt(this.state.colorId),
                 size: this.state.size,
                 description: this.state.description,
-                clothingType: this.state.typeId,
+                // clothingType: this.state.typeId,
 
             };
+            // window.alert(addedItem.name);
 
             APIManager.post("items", addedItem)
                 .then(() => { this.props.getData() }
                 );
 
         };
-    
+
+
     }
-// drop down section
+    // drop down section
     componentDidMount() {
         APIManager.getAll("quality")
-        .then((response) => {
-            this.setState({
-                quality: response
-            })
-        });
-        APIManager.getAll("colors")
-        .then((response) => {
-            // console.log(response)
-            this.setState({
-                color: response
-            })
-        });
+            .then((response) => {
+                this.setState({
+                    qualityArray: response
+                })
+            });
+        APIManager.getAll("color")
+            .then((response) => {
+                // console.log(response)
+                this.setState({
+                    colorArray: response
+                })
+            });
         APIManager.getAll("type")
-        .then((response) => {
-            this.setState({
-                type: response
+            .then((response) => {
+                this.setState({
+                    typeArray: response
+                })
             })
-        })
     }
 
     render() {
@@ -91,37 +110,7 @@ class MyClosetAddForm extends Component {
         return (
             <>
                 {" "}
-                {/* drop down section */}
-                <form>
-                <label>Quality</label>
-                <Input type="select" id="qualityId" onChange={this.handleFieldChange}>
-                    { 
-                        this.state.quality.map(qual =>  
-                    <option key={qual.id} value={qual.id}>{qual.name}</option>
-                    )
-
-                    }
-                </Input>
-                <label>Colors</label>
-                <Input type="select" id="colorId" onChange={this.handleFieldChange}>
-                    { 
-                        this.state.color.map(col =>  
-                    <option key={col.id} value={col.id}>{col.name}</option>
-                    )
-
-                    }
-                </Input>
-                <label>Type</label>
-                <Input type="select" id="typeId" onChange={this.handleFieldChange}>
-                    { 
-                        this.state.type.map(ty =>  
-                    <option key={ty.id} value={ty.id}>{ty.name}</option>
-                    )
-
-                    }
-                </Input>
-                </form>
-                {/* drop down section ends */}
+        
                 <Button className="addItem" onClick={this.toggle}>
                     Add Item</Button>
                 <Modal
@@ -135,11 +124,27 @@ class MyClosetAddForm extends Component {
                     <ModalBody>
                         <form>
                             <fieldset>
+                                <Input
+                                    className="form-control"
+                                    type="search"
+                                    id="productType"
+                                    placeholder="Search Product"
+                                    aria-label="Search"
+                                    onChange={this.handleFieldChange}
+                                ></Input>
+                                <Button
+                                    className="button"
+                                    type="submit"
+                                    required
+                                    onClick={this.search}
+
+                                >
+                                    Search
+                                 </Button>
 
                                 <div className="formgrid">
-                                    <label htmlFor="itemName">
-                                        Item Name:
-									</label>
+                                    <label htmlFor="itemName">Item Name:</label>
+									
                                     <input
                                         type="text"
                                         required
@@ -149,14 +154,7 @@ class MyClosetAddForm extends Component {
                                         value={this.state.itemName}
                                     />
 
-                                    <label htmlFor="quality">Quality:</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        onChange={this.handleFieldChange}
-                                        id="quality"
-                                        placeholder="Item Quality"
-                                    />
+
                                     <label htmlFor="itemSize">Size:</label>
                                     <input
                                         type="text"
@@ -165,22 +163,33 @@ class MyClosetAddForm extends Component {
                                         id="size"
                                         placeholder="Item Size"
                                     />
-                                    <label htmlFor="color">Color:</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        onChange={this.handleFieldChange}
-                                        id="color"
-                                        placeholder="Item Color"
-                                    />
-                                    <label htmlFor="clothingType">Type:</label>
-                                    <input
-                                        type="text"
-                                        required
-                                        onChange={this.handleFieldChange}
-                                        id="clothingType"
-                                        placeholder="Item Type"
-                                    />
+                                    <label>Quality</label>
+                                    <Input type="select" id="qualityId" onChange={this.handleFieldChange}>
+                                        {
+                                            this.state.qualityArray.map(qual =>
+                                                <option key={qual.id} value={qual.id}>{qual.name}</option>
+                                            )
+
+                                        }
+                                    </Input>
+                                    <label>Colors</label>
+                                    <Input type="select" id="colorId" onChange={this.handleFieldChange}>
+                                        {
+                                            this.state.colorArray.map(col =>
+                                                <option key={col.id} value={col.id}>{col.name}</option>
+                                            )
+
+                                        }
+                                    </Input>
+                                    <label>Type</label>
+                                    <Input type="select" id="typeId" onChange={this.handleFieldChange}>
+                                        {
+                                            this.state.typeArray.map(ty =>
+                                                <option key={ty.id} value={ty.id}>{ty.name}</option>
+                                            )
+
+                                        }
+                                    </Input>
                                     <label htmlFor="itemDescription">Description:</label>
                                     <input
                                         type="text"
