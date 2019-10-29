@@ -50,7 +50,7 @@ class MyClosetAddForm extends Component {
         evt.preventDefault();
         this.toggle();
         console.log(this.state)
-        if (this.state.quality === "" || this.state.color === ""|| this.state.type === "") 
+        if (this.state.qualityId === "" || this.state.colorId === ""|| this.state.typeId === "") 
         {
             window.alert("Please input an Item");
         } 

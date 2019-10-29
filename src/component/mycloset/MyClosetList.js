@@ -35,20 +35,20 @@ class MyClosetList extends Component {
 
   getData = () => {
     let types = []
+    let qualitys = []
+    let colors = []
     APIManager.getAll("type")
       .then((type) => {
         //  console.log(type)
         types = type
       }).then(() => {
 
-        let colors = []
         APIManager.getAll("color")
           .then((color) => {
             // console.log(color)
             colors = color
           }).then(() => {
 
-            let qualitys = []
             APIManager.getAll("quality")
               .then((quality) => {
                 // console.log(quality)

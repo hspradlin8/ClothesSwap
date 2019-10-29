@@ -43,7 +43,8 @@ class App extends Component {
     if(this.isAuthenticated()){
       this.setState({
         user: this.isAuthenticated(),
-        currentUser:sessionStorage.getItem("credentials") 
+        currentUser:sessionStorage.getItem("credentials"), 
+        userName: sessionStorage.getItem("name")
       })
       
     }else{
@@ -55,6 +56,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.currentUser)
     return (
       <React.Fragment>
         {(this.state.user) ?

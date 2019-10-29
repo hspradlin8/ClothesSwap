@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
-import React from 'react';
-import { Component } from 'react'
 import { withRouter } from "react-router-dom";
+import APImanager from './modules/APIManager'
+
 
 
 class Home extends Component {
+    state = {
+        user: {}
+    }
+    componentDidMount = () => {
+        let userId = sessionStorage.getItem("credentials")
+        APImanager.get("users", userId)
+        .then((res) => this.setState({user: res}))
 
-    render() {
-        return (
+    }
+
+    render(){
+        return(
             <>
-            <div className="userForm">
-                <h3 className="userTitle">User Name</h3>
-            <Form inline>
-                    <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                        <Label htmlFor="userEmail" className="homeUserEmail">Email:</Label>
-                        <Input onChange={this.handleFieldChange}
-                            required="" autoFocus="" type="email" name="email" id="homeEmail"/>
-                    </FormGroup>
-                    <ModalHeader toggle={this.toggle} close={closeBtn}>
-                                Edit Item
-							</ModalHeader>
-                </Form>
-                </div>
+              <h2>Welcome, {this.state.user.name}!</h2>
+                <h2>User Email: {this.state.user.email}</h2>
+                <h3>Notifications:</h3>
                 </>
-                );
+        ) 
     }
 }
+
 export default withRouter(Home);
