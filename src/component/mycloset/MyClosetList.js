@@ -56,7 +56,8 @@ class MyClosetList extends Component {
               }).then(() => {
                 // console.log(this.props.currentUser)
 
-                APIManager.getAllMyClothes("items", parseInt(this.props.currentUser)).then(items => {
+                APIManager.getAllMyClothes("items", parseInt(this.props.currentUser))
+                .then(items => {
                   // console.log("HERE", items, this.props.currentUser)
                   let filteredArray = []
                   items.forEach(e => {

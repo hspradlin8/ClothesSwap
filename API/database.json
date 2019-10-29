@@ -2,25 +2,25 @@
   "users": [
     {
       "name": "Heidi",
-      "email": "heidi@heidi",
+      "email": "heidi@heidi.com",
       "password": "heidi",
       "id": 2
     },
     {
       "name": "Sage ",
-      "email": "sage@sage",
+      "email": "sage@sage.com",
       "password": "sage",
       "id": 3
     },
     {
       "name": "Aryn",
-      "email": "aryn@aryn",
+      "email": "aryn@aryn.com",
       "password": "aryn",
       "id": 4
     },
     {
       "name": "Leigh",
-      "email": "leigh@leigh",
+      "email": "leigh@leigh.com",
       "password": "leigh",
       "id": 5
     }
@@ -29,7 +29,7 @@
     {
       "userId": 3,
       "id": 3,
-      "itemName": "Help",
+      "name": "Help",
       "quality": 1,
       "type": 12,
       "color": 2,

@@ -7,10 +7,13 @@ class OtherClosetList extends Component {
   //define what this component needs to render
   state = {
     items: [],
+    quality: [],
+    color: [],
+    type: [],
     modal: false
   };
 
-  activeUserId = parseInt(sessionStorage.getItem("userId"))
+  activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
 
   toggle = () => {
@@ -23,56 +26,111 @@ class OtherClosetList extends Component {
     APIManager.delete("items", id).then(() => {
       APIManager.getAll("items").then(newItems => {
         this.setState({
-            items: newItems
+          items: newItems
         });
       });
     });
   };
 
-  getData = () => APIManager.getAll("items", this.activeUserId).then(items => {
-    this.setState({
-      items: items
-    })
-  });
-// where the id is user specific- only gettting items related to the userId for other closet list.
-  componentDidMount() {
+  // where the id is user specific- only gettting items related to the userId for other closet list.
+  getDataAgain = () => {
     let notMyItems = []
     //getAll from APIManager and hang on to that data; put it in state
     APIManager.getAll("items")
     .then(items => {
-      items.forEach(element => {
-        if (element.userId !== parseInt(this.props.currentUser)) { 
-          notMyItems.push(element)
+      // console.log(items)
+        items.forEach(element => {
+          // console.log(element)
+          if (element.userId !== parseInt(this.props.currentUser)) {
+            // console.log(element.userId)
+            notMyItems.push(element)
           }
-      });
-    
-    }).then(() =>{
-      this.setState({
-        items: notMyItems
-      });
-    })
+        });
+
+      }).then(() => {
+        this.setState({
+          items: notMyItems
+        });
+      })
+  }
+
+  getData = () => {
+    console.log("OtherClosetList getData")
+    let types = []
+    let qualitys = []
+    let colors = []
+    APIManager.getAll("type")
+      .then((type) => {
+        types = type
+      }).then(() => {
+
+        APIManager.getAll("color")
+          .then((color) => {
+            colors = color
+          }).then(() => {
+
+            APIManager.getAll("quality")
+              .then((quality) => {
+                qualitys = quality
+              }).then(() => {
+
+                APIManager.getAllNotMyClothes("items")
+                  .then(items => {
+                    let filteredArray = []
+                    items.forEach(e => {
+                      if (e.type !== null) {
+                        var ty = types.filter(t => t.id === e.type);
+                        e.type = ty[0].name;
+                      }
+                      if (e.color !== null) {
+                        var col = colors.filter(c => c.id === e.color);
+                        e.color = col[0].name;
+                      }
+                      if (e.quality !== null) {
+                        var qual = qualitys.filter(q => q.id === e.quality);
+                        e.quality = qual[0].name;
+                      }
+                      // console.log('items after filter', items);
+                      filteredArray.push(e)
+
+                      this.setState({
+                        items: filteredArray
+                      })
+                    });
+
+                  })
+              })
+          })
+
+      }).then(() => {
+         this.getDataAgain()
+      })
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
     return (
       <>
         <div className="items-container">
-        <div className="items-intro">
-          <h1>Items</h1>
-          {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
+          <div className="items-intro">
+            <h1>Items</h1>
+            {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
           {/* <OtherClosetAddForm {...this.props}
           getData={this.getData} /> */}
           <div className="item-container-cards">
-            {this.state.items.map(item => 
-                <OtherClosetCard
-                  key={item.id}
-                  item={item}
-                  deleteItem={this.deleteItem}
-                  {...this.props}
-                  getData={this.getData}
-                  currentUser={this.props.currentUser}
-                />
+            {this.state.items.map(item =>
+              <OtherClosetCard
+                key={item.id}
+                item={item}
+                deleteItem={this.deleteItem}
+                {...this.props}
+                getData={this.getData}
+                currentUser={this.props.currentUser}
+              />
             )}
           </div>
         </div>
