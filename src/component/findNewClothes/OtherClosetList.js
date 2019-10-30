@@ -35,6 +35,8 @@ class OtherClosetList extends Component {
       });
   };
 
+// 
+
 
   // new function that searches database for clothes where type Id, color Id, and 
   // quality Id = whatever came from the dropdown. Make a new fetch call for this. 

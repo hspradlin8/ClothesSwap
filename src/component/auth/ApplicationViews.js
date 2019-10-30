@@ -8,7 +8,7 @@ import Home from "../Home";
 
 class ApplicationViews extends Component {
 
-    isAuthenticated = () => localStorage.getItem("credentials") !== null
+    isAuthenticated = () => sessionStorage.getItem("credentials") !== null
 
     render() {
         // console.log(this.props.currentUser)

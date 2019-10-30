@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
-import OtherClosetForm from "./OtherClosetForm";
-import { Modal, ModalHeader, ModalBody, } from "reactstrap";
+// import OtherClosetForm from "./OtherClosetForm";
+// import { Modal, ModalHeader, ModalBody, } from "reactstrap";
 
 
 
-class OtherClosetCard extends Component {
+class NotificationCard extends Component {
 
     state = {
-        modal: false,
-        otherUserItem: ""
-    };
+        typeName: "",
+    }
+
 
     toggle = () => {
         this.setState(prevState => ({
@@ -20,31 +20,29 @@ class OtherClosetCard extends Component {
 
     activeUserId = parseInt(sessionStorage.getItem("credentials"))
 
-    handleDelete = id => {
-        APIManager.delete("items", id)
-            .then(() => { this.props.getData() }
-            );
-    }
-    // step1: know the id of the item-arguement
-    // step2: know the id of the person who is logged in- already define as activeUser
-    // step3: know the id of the user who owns the item
-    // steps 1-3 get with this.props.item
-    // step4-create obj with steps 1-3
+    // handleDelete = id => {
+    //     APIManager.delete("items", id)
+    //         .then(() => { this.props.getData() }
+    //         );
+    // }
+    
+// findTypeName = () => {
+//    const typeObj = this.props.types.find((type) =>{
+//     return type.id === parseInt(this.props.note.item.type)
+//     })
+//     console.log(typeObj)
+// }
 
-    createNotificationBtn = () => {
-        const newNotification = {
-            recieverId: this.props.item.userId,
-            userId: this.activeUserId,
-            itemId: this.props.item.id,
-        }
-        APIManager.post("notifications",newNotification)
-
-    }
-
+getType = () => {
+    APIManager.get("type",this.props.note.item.type)
+    .then((type) =>{
+       this.setState({
+           typeName: type.name
+       })
+    })
+}
     componentDidMount() {
-        if (this.props.item.userId !== this.props.currentUser) {
-            this.setState({ otherUserItem: this.props.item })
-        }
+        this.getType();
     }
 
     render() {
@@ -59,30 +57,35 @@ class OtherClosetCard extends Component {
 
                     <div className="card-content">
                         <h3>
-                            Item Name:{this.props.item.name}
+                            User Name:
+                            {this.props.note.user.name}
                             <span className="card-itemTitle"></span>
                         </h3>
 
-                        <p>Item Size:{this.props.item.size}</p>
+                        <p>User Email: {this.props.note.user.email}</p>
 
-                        <p>Item Color:{this.props.item.color}</p>
+                        <p>Item Name:
+                        {this.props.note.item.name}
+                        </p>
 
-                        <p>Item Quality:{this.props.item.quality}</p>
+                        <p>Item Type:
+                        {this.state.typeName}
+                        </p>
 
-                        <p>Item Type: {this.props.item.type}</p>
+                        {/* <p>Item Type: {this.props.item.type}</p>
 
-                        <p>Item Description: {this.props.item.description}</p>
+                        <p>Item Description: {this.props.item.description}</p> */}
 
                         <button
                             className="button"
                             required
-                            onClick={this.createNotificationBtn}
+                            onClick={()=> this.props.deleteNotification(this.props.note.id)}
 
                         >
-                            Notification
+                            Delete Notification
                                  </button>
 
-                        <Modal
+                        {/* <Modal
                             isOpen={this.state.modal}
                             toggle={this.toggle}
                             className={this.props.className}
@@ -90,14 +93,14 @@ class OtherClosetCard extends Component {
                             <ModalHeader toggle={this.toggle} close={closeBtn}>
 
                             </ModalHeader>
-                            <ModalBody>
-                                <OtherClosetForm
+                            <ModalBody> */}
+                                {/* <OtherClosetForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}
                                     toggle={this.toggle}
-                                />
-                            </ModalBody>
+                                /> */}
+                            {/* </ModalBody> */}
                             {/* {<Button
                                     className="button"
                                     required
@@ -106,7 +109,7 @@ class OtherClosetCard extends Component {
                                 >
                                     Notification
                                  </Button>} */}
-                        </Modal>
+                        {/* </Modal> */}
                     </div>
                     <div className="scroll-img-main">
                         {/* <img className="scroll-img" src={require('../../images/scrollimage.png')} alt="logo" /> */}
@@ -118,4 +121,4 @@ class OtherClosetCard extends Component {
     }
 }
 
-export default OtherClosetCard;
+export default NotificationCard;
