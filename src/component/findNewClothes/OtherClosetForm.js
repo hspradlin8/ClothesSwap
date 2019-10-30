@@ -34,27 +34,17 @@ class OtherClosetForm extends Component {
         this.setState(stateToChange);
     };
 
-    getInfo = () => {
-        APIManager.getAllNotMyClothes()
-            .then(({items }) => {
-                this.setState({
-                    results: items.item
-                                                
-                })
-            })
+    // string, user, quality, type, color
+    handleSearch = evt => {
+        evt.preventDefault();
+        APIManager.searchNotMyClothes("items", this.props.currentUser, this.state.quality, this.state.type, this.state.color)
+            .then((items => {
+                this.props.dropListSearch(items)
+
+            }))
+
     }
 
-    handleInputChange = () => {
-        this.setState({
-          userId: this.search.value
-        }, () => {
-          if (this.state.userId && this.state.userId.length > 1) {
-            if (this.state.userId.length % 2 === 0) {
-              this.getInfo()
-            }
-          } 
-        })
-      }
 
     // drop down section
     componentDidMount() {
@@ -139,7 +129,7 @@ class OtherClosetForm extends Component {
                                     </Input>
                                 }
 
-                                {
+                                {/* {
                                     <Input
                                         className="form-control"
                                         type="search"
@@ -149,13 +139,12 @@ class OtherClosetForm extends Component {
                                         onChange={this.handleInputdChange}
                                     >
                                     </Input>
-                                }
+                                } */}
 
                                 {<Button
                                     className="button"
-                                    type="submit"
                                     required
-                                    onClick={this.search}
+                                    onClick={this.handleSearch}
 
                                 >
                                     Search
