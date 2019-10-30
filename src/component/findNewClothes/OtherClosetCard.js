@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
-// import OtherClosetEditForm from "./OtherClosetEditForm";
+import OtherClosetForm from "./OtherClosetForm";
 import { Modal, ModalHeader, ModalBody, } from "reactstrap";
 
 
@@ -40,7 +40,7 @@ class OtherClosetCard extends Component {
         return (
             <>
                 <div className="item-card">
-                 {/* <div className="searchBar"></div> */}
+                
                     <div className="card-content">
                         <h3>
                             Item Name:{this.props.item.name}
@@ -57,24 +57,6 @@ class OtherClosetCard extends Component {
 
                         <p>Item Description: {this.props.item.description}</p>
 
-                        {/* <button
-                            type="button" className="delete-item"
-                            onClick={() =>
-                                this.handleDelete(this.props.item.id)
-                            }
-                        >
-                            Delete
-						</button>
-
-                        <button
-                            type="button" className="edit-item"
-                            onClick={() => {
-                                this.toggle();
-                            }}
-                        >
-                            Edit
-						</button> */}
-
                         <Modal
                             isOpen={this.state.modal}
                             toggle={this.toggle}
@@ -84,12 +66,12 @@ class OtherClosetCard extends Component {
                                 Edit Item
 							</ModalHeader>
                             <ModalBody>
-                                {/* <OtherClosetForm
+                                <OtherClosetForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}
                                     toggle={this.toggle}
-                                /> */}
+                                />
                             </ModalBody>
                         </Modal>
                     </div>

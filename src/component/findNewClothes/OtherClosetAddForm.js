@@ -1,10 +1,4 @@
 
-// }).then(() => {
-//     this.setState({
-//       items: notMyItems
-//     },this.getData())
-//     );
-//   }
 
 
 // import React, { Component } from "react";
