@@ -10,6 +10,10 @@ export default {
   getAllNotMyClothes(resource, userId) {
     return fetch(`${remoteURL}/${resource}?userId_ne=${userId}`).then(result => result.json())
   },
+  searchNotMyClothes(resource, userId, qualityId, typeId, colorId) {
+    console.log(qualityId, typeId, colorId)
+    return fetch(`${remoteURL}/${resource}?userId_ne=${userId}&quality=${qualityId}&type=${typeId}&color=${colorId}`).then(result => result.json())
+  },
   getAllMyClothes(resource, userId) {
     return fetch(`${remoteURL}/${resource}?userId=${userId}`).then(result => result.json())
   },
