@@ -268,5 +268,13 @@
       "id": 20,
       "name": "scarf"
     }
+  ],
+  "notifications": [
+    {
+      "recieverId": 3,
+      "userId": 2,
+      "itemId": 6,
+      "id": 5
+    }
   ]
 }
