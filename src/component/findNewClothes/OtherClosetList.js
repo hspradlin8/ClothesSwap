@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import OtherClosetCard from "./OtherClosetCard";
 import APIManager from "../modules/APIManager";
+import OtherClosetForm from "./OtherClosetForm";
 
 
 class OtherClosetList extends Component {
@@ -36,9 +37,9 @@ class OtherClosetList extends Component {
   getDataAgain = () => {
     let notMyItems = []
     //getAll from APIManager and hang on to that data; put it in state
-    APIManager.getAll("items")
-    .then(items => {
-      // console.log(items)
+    APIManager.getAllNotMyClothes("items", this.props.currentUser)
+      .then(items => {
+        // console.log("Dylan is awesome", items)
         items.forEach(element => {
           // console.log(element)
           if (element.userId !== parseInt(this.props.currentUser)) {
@@ -74,8 +75,9 @@ class OtherClosetList extends Component {
                 qualitys = quality
               }).then(() => {
 
-                APIManager.getAllNotMyClothes("items")
+                APIManager.getAllNotMyClothes("items", this.props.currentUser)
                   .then(items => {
+                    console.log(items)
                     let filteredArray = []
                     items.forEach(e => {
                       if (e.type !== null) {
@@ -103,7 +105,7 @@ class OtherClosetList extends Component {
           })
 
       }).then(() => {
-         this.getDataAgain()
+        //this.getDataAgain()
       })
   }
 
@@ -119,8 +121,12 @@ class OtherClosetList extends Component {
             <h1>Items</h1>
             {/* <img className="events-img" src={require('../../images/addyourevent.png')} alt="logo" /> */}
           </div>
-          {/* <OtherClosetAddForm {...this.props}
-          getData={this.getData} /> */}
+          <OtherClosetForm
+            {...this.props}
+            // itemId={this.props.item.id}
+            getData={this.props.getData}
+            toggle={this.toggle}
+          />
           <div className="item-container-cards">
             {this.state.items.map(item =>
               <OtherClosetCard
@@ -130,7 +136,9 @@ class OtherClosetList extends Component {
                 {...this.props}
                 getData={this.getData}
                 currentUser={this.props.currentUser}
+
               />
+
             )}
           </div>
         </div>

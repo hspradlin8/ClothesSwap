@@ -42,10 +42,10 @@ class MyClosetCard extends Component {
                 <div className="item-card">
 
                     <div className="card-content">
-                        <p>
+                        <h3>
                             Item Name:{this.props.item.name}
                             {/* <span className="card-itemTitle"></span> */}
-                        </p>
+                        </h3>
 
                         <p>Size:{this.props.item.size}</p>
 

@@ -56,7 +56,6 @@ class MyClosetAddForm extends Component {
                 color: parseInt(this.state.colorId),
                 size: this.state.size,
                 description: this.state.description,
-                // clothingType: this.state.typeId,
 
             };
             // window.alert(addedItem.name);

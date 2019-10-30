@@ -43,7 +43,7 @@ class MyClosetEditForm extends Component {
             size: this.state.size,
             description: this.state.description
         };
-        console.log('edited', editedItem)
+        // console.log('edited', editedItem)
         APIManager.update("items", editedItem)
             .then(() => { this.props.getData() }
             );
@@ -74,8 +74,8 @@ class MyClosetEditForm extends Component {
 
             .then(APIManager.get("items", this.props.itemId)
                 .then(item => {
-                    console.log('item before state', item);
-                    console.log("userId");
+                    // console.log('item before state', item);
+                    // console.log("userId");
                     
                     if (item.color !== NaN && item.quality !== NaN && item.type !== NaN) {
                         this.setState({
@@ -93,12 +93,12 @@ class MyClosetEditForm extends Component {
                         alert("Please fill out all sections")
                     }
 
-                    console.log("userIdkjh", this.state.userId);
+                    // console.log("userIdkjh", this.state.userId);
                 })).then(() => {
                     this.setState({
                         pageLoaded: true
                     })
-                    console.log("userId2", this.state.userId);
+                    // console.log("userId2", this.state.userId);
                 })
     };
 

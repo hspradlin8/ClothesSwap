@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import APIManager from "../../modules/APIManager";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from "reactstrap";
+import APIManager from "../modules/APIManager";
+import { Button, Input, ModalBody } from "reactstrap";
 
 
 class OtherClosetForm extends Component {
@@ -34,24 +34,124 @@ class OtherClosetForm extends Component {
         this.setState(stateToChange);
     };
 
-    render() {
-        return (
-            <form>
+    getInfo = () => {
+        APIManager.getAllNotMyClothes()
+            .then(({items }) => {
+                this.setState({
+                    results: items.item
+                                                
+                })
+            })
+    }
 
-           
-       
-                                { <Input
-                                    className="form-control"
-                                    type="search"
-                                    id="productType"
-                                    placeholder="Search Product"
-                                    aria-label="Search"
-                                    onChange={this.handleFieldChange}
-                                >
-                                </Input> 
-                            }
-                                
-                                { <Button
+    handleInputChange = () => {
+        this.setState({
+          userId: this.search.value
+        }, () => {
+          if (this.state.userId && this.state.userId.length > 1) {
+            if (this.state.userId.length % 2 === 0) {
+              this.getInfo()
+            }
+          } 
+        })
+      }
+
+    // drop down section
+    componentDidMount() {
+        APIManager.getAll("quality")
+            .then((response) => {
+                this.setState({
+                    qualityArray: response
+                })
+            });
+        APIManager.getAll("color")
+            .then((response) => {
+                // console.log(response)
+                this.setState({
+                    colorArray: response
+                })
+            });
+        APIManager.getAll("type")
+            .then((response) => {
+                this.setState({
+                    typeArray: response
+                })
+            })
+    }
+
+    render() {
+        // console.log('itemname state', this.state.colorArray)
+        return (
+            <>
+                <ModalBody>
+                    <form>
+                        <fieldset>
+                            <div className="formgrid">
+
+
+                                <label htmlFor="quality">Quality:</label>
+                                {
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="quality"
+                                        value={this.state.quality}>
+                                        {this.state.qualityArray.map(qual =>
+                                            <option key={qual.id} value={qual.id}>{qual.name}</option>
+                                        )
+
+                                        }
+                                    </Input>
+                                }
+
+                                <label htmlFor="color">Color:</label>
+                                {
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="color"
+                                        value={this.state.color}>
+                                        {this.state.colorArray.map(col =>
+                                            <option key={col.id} value={col.id}>{col.name}</option>
+                                        )
+
+                                        }
+                                    </Input>
+                                }
+                                <label htmlFor="type">Type: </label>
+                                {
+                                    <Input
+                                        type="select"
+                                        required
+                                        className="form-control"
+                                        onChange={this.handleFieldChange}
+                                        id="type"
+                                        value={this.state.type}>
+                                        {this.state.typeArray.map(ty =>
+                                            <option key={ty.id} value={ty.id}>{ty.name}</option>
+                                        )
+
+                                        }
+                                    </Input>
+                                }
+
+                                {
+                                    <Input
+                                        className="form-control"
+                                        type="search"
+                                        id="productType"
+                                        placeholder="Search Product"
+                                        aria-label="Search"
+                                        onChange={this.handleInputdChange}
+                                    >
+                                    </Input>
+                                }
+
+                                {<Button
                                     className="button"
                                     type="submit"
                                     required
@@ -59,35 +159,31 @@ class OtherClosetForm extends Component {
 
                                 >
                                     Search
-                                 </Button> }
-    
-                                 <label>Quality</label>
-                                 <Input type="select" id="qualityId" onChange={this.handleFieldChange}>
-                                     {
-                                         this.state.qualityArray.map(qual =>
-                                             <option key={qual.id} value={qual.id}>{qual.name}</option>
-                                         )
-
-                                     }
-                                 </Input>
-                                 <label>Colors</label>
-                                 <Input type="select" id="colorId" onChange={this.handleFieldChange}>
-                                     {
-                                         this.state.colorArray.map(col =>
-                                             <option key={col.id} value={col.id}>{col.name}</option>
-                                         )
-
-                                     }
-                                 </Input>
-                                 <label>Type</label>
-                                 <Input type="select" id="typeId" onChange={this.handleFieldChange}>
-                                     {
-                                         this.state.typeArray.map(ty =>
-                                             <option key={ty.id} value={ty.id}>{ty.name}</option>
-                                         )
-
-                                     }
-                                 </Input> 
-                                 </form>                            ) 
+                                 </Button>}
+                            </div>
+                            <div className="alignRight"></div>
+                        </fieldset>
+                    </form>
+                </ModalBody>
+                {/* <ModalFooter> */}
+                {/* <Button
+                        type="button"
+                        disabled={this.state.loadingStatus}
+                        onClick={evt => {
+                            this.updateExistingItem(evt);
+                            this.props.toggle();
+                            console.log("button fires");
+                        }}
+                        className="btn btn-primary"
+                    >
+                        Submit
+					</Button>
+                    <Button className="cancel" onClick={this.props.toggle}>
+                        Cancel
+					</Button> */}
+                {/* </ModalFooter> */}
+            </>
+        );
     }
 }
+export default OtherClosetForm;
