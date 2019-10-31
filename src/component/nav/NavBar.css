@@ -11,6 +11,10 @@ small {
     color: ghostwhite;
     text-align: center;
   }
+
+  .titlePage{
+    text-align: center;
+  }
   
   nav .container {
     display: flex;
