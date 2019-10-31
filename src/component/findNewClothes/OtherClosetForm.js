@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
-import { Button, Input, ModalBody } from "reactstrap";
+import { Button, Input, ModalBody, ModalFooter } from "reactstrap";
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
+const uploadPreset = 'clothesSwap';
+const uploadURL = 'https://api.cloudinary.com/v1_1/dwx2mgkne/image/upload';
 
 class OtherClosetForm extends Component {
 
@@ -16,6 +20,9 @@ class OtherClosetForm extends Component {
         typeArray: [],
         size: "",
         description: "",
+        uploadURL: null,
+        file: null,
+        imageUrl: "",
         loadingStatus: true,
         modal: false
     }
@@ -26,6 +33,14 @@ class OtherClosetForm extends Component {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+    }
+
+      // react-dropzone to upload images
+      onImageDrop(files) {
+        this.setState({
+            uploadedFile: files[0]
+        });
+        this.handleImageUpload(files[0]);
     }
 
     handleFieldChange = evt => {
@@ -43,6 +58,25 @@ class OtherClosetForm extends Component {
 
             }))
 
+    }
+
+      // uploads the image to cloudinary, and sends a URL to the image back in its place
+      handleImageUpload(file) {
+        let upload = request.post(uploadURL)
+            .field('upload_preset', uploadPreset)
+            .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    imageUrl: response.body.secure_url
+                });
+            }
+        });
     }
 
 
@@ -76,6 +110,32 @@ class OtherClosetForm extends Component {
                 <ModalBody>
                     <form>
                         <fieldset>
+                        <div className="FileUpload">
+                                    <Dropzone
+                                        onDrop={this.onImageDrop.bind(this)}
+                                        accept="image/*"
+                                        multiple={false}>
+                                        {({ getRootProps, getInputProps }) => {
+                                            return (
+                                                <div
+                                                    {...getRootProps()}
+                                                >
+                                                    <input {...getInputProps()} /> ADD PICTURES:
+                                                    {
+                                                        <p>Upload Pictures</p>
+                                                    }
+                                                </div>
+                                            )
+                                        }}
+                                    </Dropzone>
+
+                                </div>
+                                <div>
+                                    {this.state.imageUrl === '' ? null :
+                                        <div>
+                                            <p>{this.state.name}</p>
+                                            <img src={this.state.imageUrl} />
+                                        </div>}
                             <div className="formgrid">
 
 
@@ -129,17 +189,6 @@ class OtherClosetForm extends Component {
                                     </Input>
                                 }
 
-                                {/* {
-                                    <Input
-                                        className="form-control"
-                                        type="search"
-                                        id="productType"
-                                        placeholder="Search Product"
-                                        aria-label="Search"
-                                        onChange={this.handleInputdChange}
-                                    >
-                                    </Input>
-                                } */}
 
                                 {<Button
                                     className="button"
@@ -151,26 +200,13 @@ class OtherClosetForm extends Component {
                                  </Button>}
                             </div>
                             <div className="alignRight"></div>
+                            </div>
                         </fieldset>
                     </form>
                 </ModalBody>
-                {/* <ModalFooter> */}
-                {/* <Button
-                        type="button"
-                        disabled={this.state.loadingStatus}
-                        onClick={evt => {
-                            this.updateExistingItem(evt);
-                            this.props.toggle();
-                            console.log("button fires");
-                        }}
-                        className="btn btn-primary"
-                    >
-                        Submit
-					</Button>
-                    <Button className="cancel" onClick={this.props.toggle}>
-                        Cancel
-					</Button> */}
-                {/* </ModalFooter> */}
+                <ModalFooter>
+               
+                </ModalFooter>
             </>
         );
     }

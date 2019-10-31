@@ -23,68 +23,207 @@
       "email": "leigh@leigh.com",
       "password": "leigh",
       "id": 5
+    },
+    {
+      "name": "Madi",
+      "email": "madi@madi.com",
+      "password": "madi",
+      "id": 6
+    },
+    {
+      "name": "Mo",
+      "email": "mo@mo.com",
+      "password": "mo",
+      "id": 7
+    },
+    {
+      "name": "David",
+      "email": "david@david.com",
+      "password": "david",
+      "id": 8
+    },
+    {
+      "name": "Quin",
+      "email": "quin@quin.com",
+      "password": "quin",
+      "id": 9
+    },
+    {
+      "name": "Nick",
+      "email": "nick@nick.com",
+      "password": "nick",
+      "id": 10
+    },
+    {
+      "name": "Phil",
+      "email": "phil@phil.com",
+      "password": "phil",
+      "id": 11
+    },
+    {
+      "name": "Brenda",
+      "email": "brenda@brenda.com",
+      "password": "brenda",
+      "id": 12
+    },
+    {
+      "name": "Summer ",
+      "email": "summer@summer",
+      "password": "summer",
+      "id": 13
+    },
+    {
+      "name": "Gradi",
+      "email": "gradi@gradi.com",
+      "password": "gradi",
+      "id": 14
+    },
+    {
+      "name": "Alex",
+      "email": "alex@alex.com",
+      "password": "alex",
+      "id": 15
+    },
+    {
+      "name": "Seth",
+      "email": "seth@seth.com",
+      "password": "seth",
+      "id": 16
+    },
+    {
+      "name": "Taylor",
+      "email": "taylor@taylor.com",
+      "password": "taylor",
+      "id": 17
+    },
+    {
+      "name": "Keaton",
+      "email": "keaton@keaton.com",
+      "password": "keaton",
+      "id": 18
     }
   ],
   "items": [
     {
-      "userId": 3,
-      "id": 3,
-      "name": "Help",
-      "quality": 1,
-      "type": 12,
-      "color": 2,
-      "size": "small",
-      "description": "cotton"
+      "userId": 2,
+      "name": "KISS",
+      "quality": 3,
+      "type": 13,
+      "color": 10,
+      "size": "Medium",
+      "description": "Kiss Dress",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572535766/saual9fp47m9g7mzwrz5.jpg",
+      "id": 4
     },
     {
-      "userId": 3,
-      "name": "Help 2",
-      "quality": 2,
-      "type": 4,
-      "color": 5,
+      "userId": 2,
+      "name": "Grateful Boots",
+      "quality": 4,
+      "type": 18,
+      "color": 9,
       "size": "7",
-      "description": "help me",
+      "description": "Grateful dead boots ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536123/sbtvtpoa7ihya8qnep2h.jpg",
       "id": 5
     },
     {
       "userId": 3,
-      "name": "Iron Maiden",
+      "name": "Joker Suit ",
+      "quality": 3,
+      "type": 21,
+      "color": null,
+      "size": "Small",
+      "description": "Joker Suit ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536752/rcfgwhyy0pchfs7r4zqr.jpg",
+      "id": 7
+    },
+    {
+      "userId": 3,
+      "name": "Bee Shorts",
+      "quality": 1,
+      "type": 22,
+      "color": 10,
+      "size": "small",
+      "description": "Live Bees as shorts",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536854/vxesqy8derhyylz2i7rl.jpg",
+      "id": 8
+    },
+    {
+      "userId": 3,
+      "name": "Checkered Jacket ",
+      "quality": 3,
+      "type": 5,
+      "color": 21,
+      "size": "Large",
+      "description": "Wool",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536979/iq6hrllzrhg9yznvvrhq.jpg",
+      "id": 9
+    },
+    {
+      "userId": 2,
+      "name": "Skeleton Suit ",
+      "quality": 3,
+      "type": 21,
+      "color": 10,
+      "size": "medium ",
+      "description": "body suit",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537696/dgmhfzpdktoliv8l6y7m.jpg",
+      "id": 10
+    },
+    {
+      "userId": 2,
+      "name": "Duster Jacket  ",
+      "quality": 3,
+      "type": 5,
+      "color": 10,
+      "size": "Medium",
+      "description": "Sweet Duster Jacket ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537731/dvhe74aromjsxnxvmtqq.jpg",
+      "id": 11
+    },
+    {
+      "userId": 5,
+      "name": "Rugby Shirt ",
       "quality": 3,
       "type": 3,
-      "color": 2,
-      "size": "small",
-      "description": "Knit",
-      "id": 6
-    },
-    {
-      "userId": 2,
-      "id": 9,
-      "name": "really sad",
-      "quality": 4,
-      "type": 7,
-      "color": 1,
+      "color": null,
       "size": "Medium",
-      "description": "cotton Kiss Dress"
+      "description": "Rugby shirt ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537909/poo3kqm3pdkh3cwqokrg.jpg",
+      "id": 12
     },
     {
-      "userId": 2,
-      "id": 10,
-      "name": "Edward Shirt",
+      "userId": 5,
+      "name": "Blazer ",
       "quality": 3,
-      "type": 2,
-      "color": 13,
-      "size": "Small",
-      "description": "blouse"
+      "type": 5,
+      "color": 9,
+      "size": "Medium",
+      "description": "Blazer ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537942/bdgzobgnodmlndmztmo3.jpg",
+      "id": 13
     },
     {
-      "userId": 2,
-      "id": 11,
-      "name": "Kiss ",
+      "userId": 5,
+      "name": "Cowboy Boots ",
       "quality": 3,
       "type": 18,
-      "color": 19,
-      "size": "Medium",
-      "description": "cotton"
+      "color": 10,
+      "size": "6.5",
+      "description": "Cowboy Boots ",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537980/kayov17yl72klvaawkxn.jpg",
+      "id": 14
+    },
+    {
+      "userId": 18,
+      "id": 15,
+      "name": "KISS",
+      "quality": 1,
+      "type": 13,
+      "color": 9,
+      "size": "large",
+      "description": "Keaton's Dress",
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572548081/ds8koehdqiwq7fopkhxv.jpg"
     }
   ],
   "color": [
@@ -167,6 +306,10 @@
     {
       "id": 20,
       "name": "lime"
+    },
+    {
+      "id": 21,
+      "name": "mutliple"
     }
   ],
   "quality": [
@@ -267,13 +410,39 @@
     {
       "id": 20,
       "name": "scarf"
+    },
+    {
+      "id": 21,
+      "name": "suit"
+    },
+    {
+      "id": 22,
+      "name": "shorts"
     }
   ],
   "notifications": [
     {
       "recieverId": 3,
-      "userId": 2,
-      "itemId": 6,
+      "userId": 5,
+      "itemId": 7,
+      "id": 1
+    },
+    {
+      "recieverId": 3,
+      "userId": 5,
+      "itemId": 8,
+      "id": 2
+    },
+    {
+      "recieverId": 2,
+      "userId": 18,
+      "itemId": 5,
+      "id": 4
+    },
+    {
+      "recieverId": 5,
+      "userId": 18,
+      "itemId": 12,
       "id": 5
     }
   ]

@@ -24,6 +24,7 @@ class Home extends Component {
                 <h3>Notifications:</h3>
                 <NotificationList
                 />
+                
                 </>
         ) 
     }

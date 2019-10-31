@@ -25,22 +25,22 @@ class NotificationCard extends Component {
     //         .then(() => { this.props.getData() }
     //         );
     // }
-    
-// findTypeName = () => {
-//    const typeObj = this.props.types.find((type) =>{
-//     return type.id === parseInt(this.props.note.item.type)
-//     })
-//     console.log(typeObj)
-// }
 
-getType = () => {
-    APIManager.get("type",this.props.note.item.type)
-    .then((type) =>{
-       this.setState({
-           typeName: type.name
-       })
-    })
-}
+    // findTypeName = () => {
+    //    const typeObj = this.props.types.find((type) =>{
+    //     return type.id === parseInt(this.props.note.item.type)
+    //     })
+    //     console.log(typeObj)
+    // }
+
+    getType = () => {
+        APIManager.get("type", this.props.note.item.type)
+            .then((type) => {
+                this.setState({
+                    typeName: type.name
+                })
+            })
+    }
     componentDidMount() {
         this.getType();
     }
@@ -75,15 +75,22 @@ getType = () => {
                         {/* <p>Item Type: {this.props.item.type}</p>
 
                         <p>Item Description: {this.props.item.description}</p> */}
-
+                        {this.props.note.item.imageURL === "" ? (
+                            <div></div>
+                        ) : (
+                                <picture>
+                                    <img src={this.props.note.item.imageURL} alt={this.props.note.item.name} />
+                                </picture>
+                            )}
                         <button
                             className="button"
                             required
-                            onClick={()=> this.props.deleteNotification(this.props.note.id)}
+                            onClick={() => this.props.deleteNotification(this.props.note.id)}
 
                         >
                             Delete Notification
                                  </button>
+
 
                         {/* <Modal
                             isOpen={this.state.modal}
@@ -94,14 +101,14 @@ getType = () => {
 
                             </ModalHeader>
                             <ModalBody> */}
-                                {/* <OtherClosetForm
+                        {/* <OtherClosetForm
                                     {...this.props}
                                     itemId={this.props.item.id}
                                     getData={this.props.getData}
                                     toggle={this.toggle}
                                 /> */}
-                            {/* </ModalBody> */}
-                            {/* {<Button
+                        {/* </ModalBody> */}
+                        {/* {<Button
                                     className="button"
                                     required
                                     onClick={this.handleSearch}

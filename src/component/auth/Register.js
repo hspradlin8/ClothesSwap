@@ -20,7 +20,7 @@ class Register extends Component {
 
   handleRegister = (e) => {
     e.preventDefault()
-    this.toggle()
+    // this.toggle()
     APIManager.getAll("users").then((users) => {
       let isMatch = users.find(user => user.email.toLowerCase() === this.state.rEmail.toLowerCase())
 
@@ -43,10 +43,10 @@ class Register extends Component {
             sessionStorage.setItem("userId", createdUser.id);
             sessionStorage.setItem("email", this.state.email);
             sessionStorage.setItem("name", this.state.name);
-
+            this.props.setUser(createdUser.id);
 
               //This determines which page you land on upon registration
-              this.props.history.push("/")
+              // this.props.history.push("/")
             }
         )}
       }
@@ -59,7 +59,7 @@ class Register extends Component {
       <>
         <div className="logRegForm">
           <h3 className="logRegTitle">Register</h3>
-          <Form onSubmit={this.handleRegister} inline>
+          <Form>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <Label htmlFor="name" className="mr-sm-2">Name:</Label>
               <Input onChange={this.handleFieldChange} type="name"
@@ -81,7 +81,7 @@ class Register extends Component {
                 placeholder="Password"
                 required="" />
             </FormGroup>
-            <Button className="submit">Submit</Button>
+            <Button  onClick={this.handleRegister} className="submit">Submit</Button>
           </Form>
         </div>
       </>

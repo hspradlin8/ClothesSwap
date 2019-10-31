@@ -81,6 +81,14 @@ class OtherClosetCard extends Component {
                         >
                             Notification
                                  </button>
+                                 {this.props.item.imageURL === "" ? (
+                        <div></div>
+                    ) : (
+                            <picture>
+                                <img src={this.props.item.imageURL} alt={this.props.item.name} />
+                            </picture>
+                        )}
+
 
                         <Modal
                             isOpen={this.state.modal}
