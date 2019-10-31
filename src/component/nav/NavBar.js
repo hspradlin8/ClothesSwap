@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 class NavBar extends Component {
     handleLogout = () => {
         this.props.clearUser();
-        this.props.history.push("/login");
+        this.props.history.push("/");
     }
 
     render() {
@@ -19,9 +19,9 @@ class NavBar extends Component {
                 <ul className="container">
             <li><Link className="nav-link" to="/">Home</Link></li>
             <li><Link className="nav-link" to="/myCloset">My Closet</Link></li>
-            {!this.props.user && 
+            {/* {!this.props.user && 
             <li><Link className="nav-link" to="/login">Login</Link></li>
-            }
+            } */}
               <>
               <li><Link className="nav-link" to="/findNewClothes">Find New Clothes</Link></li>
             <li><span className="nav-link" onClick={this.handleLogout}>Logout</span></li>

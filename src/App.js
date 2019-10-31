@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ApplicationViews from "./component/auth/ApplicationViews";
 import NavBar from "./component/nav/NavBar";
-import Register from "./component/auth/Login";
-import Login from "./component/auth/Register";
+import Register from "./component/auth/Register";
+import Login from "./component/auth/Login";
 import About from "./component/About";
 
 
@@ -75,7 +75,7 @@ class App extends Component {
           : <><div className="logRegContainer">
             <Login setUser={this.setUser}
                     currentUser={this.state.currentUser} />
-            <Register setUser={this.setUser} />
+            <Register {...this.props}setUser={this.setUser} />
             <About />
           </div>
           </>}

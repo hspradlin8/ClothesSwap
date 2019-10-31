@@ -9,6 +9,7 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 class MyClosetCard extends Component {
 
     state = {
+        imageUrl: "",
         modal: false
         // dropDownToggle: false
     };
@@ -56,6 +57,8 @@ class MyClosetCard extends Component {
                         <p>Type:{this.props.item.type}</p>
 
                         <p>Description: {this.props.item.description}</p>
+                       
+                       
 
                         <button
                             type="button" className="delete-item"
@@ -74,6 +77,14 @@ class MyClosetCard extends Component {
                         >
                             Edit
 						</button>
+
+                        {this.props.item.imageURL === "" ? (
+                        <div></div>
+                    ) : (
+                            <picture>
+                                <img src={this.props.item.imageURL} alt={this.props.item.name} />
+                            </picture>
+                        )}
 
                         <Modal
                             isOpen={this.state.modal}

@@ -14,14 +14,14 @@ class ApplicationViews extends Component {
         // console.log(this.props.currentUser)
         return (
             <React.Fragment>
-                <Route
+                <Route exact path="/" render={(props) => {
+                    return <Home {...props} />
+                  }} />
+                {/* <Route
                 exact path="/login"  render={props => {
-                    return <Login />;
+                    return <Login {...props}/>;
                 }}
-            />
-            <Route exact path="/" render={(props) => {
-                return <Home {...props} />
-              }} />
+            /> */}
             <Route exact path="/myCloset" render={(props) => {
                 return <MyClosetList key={this.props.currentUser} currentUser={this.props.currentUser} {...props} />
               }} />

@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
 import { Button, ModalBody, ModalFooter, Input } from "reactstrap";
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+const uploadPreset = 'clothesSwap';
+const uploadURL = 'https://api.cloudinary.com/v1_1/dwx2mgkne/image/upload';
 
 
 class MyClosetEditForm extends Component {
@@ -16,6 +21,9 @@ class MyClosetEditForm extends Component {
         type: "",
         size: "",
         description: "",
+        uploadURL: null,
+        file: null,
+        imageUrl: "",
         loadingStatus: false,
         modal: false,
         activeUser: parseInt(sessionStorage.getItem("credentials")),
@@ -29,8 +37,35 @@ class MyClosetEditForm extends Component {
         this.setState(stateToChange);
     };
 
+    // react-dropzone to upload images
+    onImageDrop(files) {
+        this.setState({
+            uploadedFile: files[0]
+        });
+        this.handleImageUpload(files[0]);
+    }
+
+    // this uploads the image to cloudinary, and sends a URL to the image back in its place
+    handleImageUpload(file) {
+        let upload = request.post(uploadURL)
+            .field('upload_preset', uploadPreset)
+            .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    imageUrl: response.body.secure_url
+                });
+            }
+        });
+    }
+
     updateExistingItem = evt => {
-        console.log("evt", parseInt(this.props.userId))
+        //console.log("evt", parseInt(this.props.userId))
         evt.preventDefault();
         this.setState({ loadingStatus: false });
         const editedItem = {
@@ -41,7 +76,8 @@ class MyClosetEditForm extends Component {
             type: parseInt(this.state.type),
             color: parseInt(this.state.color),
             size: this.state.size,
-            description: this.state.description
+            description: this.state.description,
+            imageURL: this.state.imageUrl
         };
         // console.log('edited', editedItem)
         APIManager.update("items", editedItem)
@@ -76,7 +112,7 @@ class MyClosetEditForm extends Component {
                 .then(item => {
                     // console.log('item before state', item);
                     // console.log("userId");
-                    
+
                     if (item.color !== NaN && item.quality !== NaN && item.type !== NaN) {
                         this.setState({
                             userId: item.userId,
@@ -86,10 +122,11 @@ class MyClosetEditForm extends Component {
                             size: item.size,
                             type: item.type,
                             description: item.description,
+                            imageUrl: item.imageURL,
                             loadingStatus: false,
                         })
 
-                    }else{
+                    } else {
                         alert("Please fill out all sections")
                     }
 
@@ -189,29 +226,60 @@ class MyClosetEditForm extends Component {
                                     value={this.state.description}
                                 />
                             </div>
-                            <div className="alignRight"></div>
+
+                            <div>
+                                <div className="FileUpload">
+                                    <Dropzone
+                                        onDrop={this.onImageDrop.bind(this)}
+                                        accept="image/*"
+                                        multiple={false}>
+                                        {({ getRootProps, getInputProps }) => {
+                                            return (
+                                                <div
+                                                    {...getRootProps()}
+                                                >
+                                                    <input {...getInputProps()} /> EDIT THE PICTURE:
+                                                    {
+                                                        <p>Upload Picture</p>
+                                                    }
+                                                </div>
+                                            )
+                                        }}
+                                    </Dropzone>
+
+                                </div>
+
+                                <div>
+                                    {this.state.imageUrl === '' ? null :
+                                        <div>
+                                            <p>{this.state.name}</p>
+                                            <img src={this.state.imageUrl} />
+                                        </div>}
+                                </div>
+                                <div className="alignRight"></div>
+                                </div>
                         </fieldset>
                     </form>
                 </ModalBody>
-                <ModalFooter>
-                    <Button
-                        type="button"
-                        disabled={this.state.loadingStatus}
-                        onClick={evt => {
-                            this.updateExistingItem(evt);
-                            this.props.toggle();
-                            console.log("button fires");
-                        }}
-                        className="btn btn-primary"
-                    >
-                        Submit
+                    <ModalFooter>
+                        <Button
+                            type="button"
+                            disabled={this.state.loadingStatus}
+                            onClick={evt => {
+                                this.updateExistingItem(evt);
+                                this.props.toggle();
+                                //console.log("button fires");
+                            }}
+                            className="btn btn-primary"
+                        >
+                            Submit
 					</Button>
-                    <Button className="cancel" onClick={this.props.toggle}>
-                        Cancel
+                        <Button className="cancel" onClick={this.props.toggle}>
+                            Cancel
 					</Button>
-                </ModalFooter>
+                    </ModalFooter>
             </>
-        );
-    }
-}
+                );
+            }
+        }
 export default MyClosetEditForm;
