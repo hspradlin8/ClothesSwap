@@ -12,6 +12,11 @@ small {
     text-align: center;
   }
 
+  .prodImg{
+    height: auto;
+    width: 140px;
+  }
+
   .titlePage{
     text-align: center;
   }
