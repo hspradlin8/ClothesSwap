@@ -25,82 +25,16 @@
       "id": 5
     },
     {
-      "name": "Madi",
-      "email": "madi@madi.com",
-      "password": "madi",
-      "id": 6
-    },
-    {
-      "name": "Mo",
-      "email": "mo@mo.com",
-      "password": "mo",
-      "id": 7
-    },
-    {
-      "name": "David",
-      "email": "david@david.com",
-      "password": "david",
-      "id": 8
-    },
-    {
-      "name": "Quin",
-      "email": "quin@quin.com",
-      "password": "quin",
-      "id": 9
-    },
-    {
-      "name": "Nick",
-      "email": "nick@nick.com",
-      "password": "nick",
-      "id": 10
-    },
-    {
-      "name": "Phil",
-      "email": "phil@phil.com",
-      "password": "phil",
-      "id": 11
-    },
-    {
-      "name": "Brenda",
-      "email": "brenda@brenda.com",
-      "password": "brenda",
-      "id": 12
-    },
-    {
-      "name": "Summer ",
-      "email": "summer@summer",
-      "password": "summer",
-      "id": 13
-    },
-    {
-      "name": "Gradi",
-      "email": "gradi@gradi.com",
-      "password": "gradi",
-      "id": 14
-    },
-    {
-      "name": "Alex",
-      "email": "alex@alex.com",
-      "password": "alex",
-      "id": 15
-    },
-    {
-      "name": "Seth",
-      "email": "seth@seth.com",
-      "password": "seth",
-      "id": 16
-    },
-    {
-      "name": "Taylor",
-      "email": "taylor@taylor.com",
-      "password": "taylor",
-      "id": 17
-    },
-    {
       "name": "Keaton",
       "email": "keaton@keaton.com",
       "password": "keaton",
       "id": 18
+    },
+    {
+      "name": "Madi",
+      "email": "madi@madi.com",
+      "password": "madi",
+      "id": 19
     }
   ],
   "items": [
@@ -128,14 +62,14 @@
     },
     {
       "userId": 3,
+      "id": 7,
       "name": "Joker Suit ",
       "quality": 3,
       "type": 21,
-      "color": null,
+      "color": 1,
       "size": "Small",
       "description": "Joker Suit ",
-      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536752/rcfgwhyy0pchfs7r4zqr.jpg",
-      "id": 7
+      "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572536752/rcfgwhyy0pchfs7r4zqr.jpg"
     },
     {
       "userId": 3,
@@ -186,7 +120,7 @@
       "name": "Rugby Shirt ",
       "quality": 3,
       "type": 3,
-      "color": null,
+      "color": 1,
       "size": "Medium",
       "description": "Rugby shirt ",
       "imageURL": "https://res.cloudinary.com/dwx2mgkne/image/upload/v1572537909/poo3kqm3pdkh3cwqokrg.jpg",

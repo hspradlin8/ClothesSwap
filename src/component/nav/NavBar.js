@@ -3,6 +3,8 @@ import { Component } from 'react'
 import { Link } from "react-router-dom"
 import './NavBar.css';
 import { withRouter } from "react-router-dom";
+import { NavbarBrand } from "react-bootstrap"
+
 
 class NavBar extends Component {
     handleLogout = () => {
@@ -14,6 +16,11 @@ class NavBar extends Component {
         return (
             <header>
                 <h1 className="titlePage">Sharing is Caring<br />
+                <NavbarBrand href="#home"><img
+                        src={require("../../component/images/OverProject2.png")}
+                        className="prodImg"
+                        alt="dressform"
+                    ></img></NavbarBrand>
                 </h1>
                 <nav>
                 <ul className="container">
