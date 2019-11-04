@@ -1,0 +1,30 @@
+.items-container{
+    margin: 20px;
+}
+
+.card-content{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.image-card{
+border: 3px solid;
+max-width: auto;
+max-height: auto;
+}
+
+.delete-item{
+    background-color: maroon;
+    color: white;
+}
+
+.edit-item{
+    background: maroon;
+    color: white;
+}
+
+.addItem,
+.buttonNote {
+    background: maroon;
+    color: white;
+}

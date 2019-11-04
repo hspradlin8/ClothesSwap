@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
 import OtherClosetForm from "./OtherClosetForm";
 import { Modal, ModalHeader, ModalBody, } from "reactstrap";
+import "../mycloset/MyCloset.css"
 
 
 
@@ -58,6 +59,7 @@ class OtherClosetCard extends Component {
                 <div className="item-card">
 
                     <div className="card-content">
+                    <div className="card-text">
                         <h3>
                             Item Name:{this.props.item.name}
                             <span className="card-itemTitle"></span>
@@ -74,21 +76,26 @@ class OtherClosetCard extends Component {
                         <p>Item Description: {this.props.item.description}</p>
 
                         <button
-                            className="button"
+                            className="buttonNote"
                             required
                             onClick={this.createNotificationBtn}
 
                         >
                             Notification
                                  </button>
+                                </div>
+                                 <div className="image-card">
                                  {this.props.item.imageURL === "" ? (
                         <div></div>
+                       
                     ) : (
                             <picture>
                                 <img src={this.props.item.imageURL} alt={this.props.item.name} />
                             </picture>
                         )}
-
+                            
+                            </div>
+                        
 
                         <Modal
                             isOpen={this.state.modal}

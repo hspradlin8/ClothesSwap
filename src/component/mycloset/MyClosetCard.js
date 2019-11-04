@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
 import MyClosetEditForm from "./myClosetEditForm";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
-// import { } from 'reactstrap';
+import "./MyCloset.css";
 
 
 
@@ -43,6 +43,7 @@ class MyClosetCard extends Component {
                 <div className="item-card">
 
                     <div className="card-content">
+                        <div className="card-text">
                         <h3>
                             Item Name:{this.props.item.name}
                             {/* <span className="card-itemTitle"></span> */}
@@ -77,7 +78,9 @@ class MyClosetCard extends Component {
                         >
                             Edit
 						</button>
+                        </div>
 
+                        <div className="image-card">
                         {this.props.item.imageURL === "" ? (
                         <div></div>
                     ) : (
@@ -85,7 +88,7 @@ class MyClosetCard extends Component {
                                 <img src={this.props.item.imageURL} alt={this.props.item.name} />
                             </picture>
                         )}
-
+                        </div>
                         <Modal
                             isOpen={this.state.modal}
                             toggle={this.toggle}
