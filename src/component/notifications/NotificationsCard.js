@@ -51,6 +51,7 @@ class NotificationCard extends Component {
                 &times;
 			</button>
         );
+        console.log(this.props.note.item.name, "this is a note")
         return (
             <>
                 <div className="item-card">
@@ -72,9 +73,7 @@ class NotificationCard extends Component {
                         {this.state.typeName}
                         </p>
 
-                        {/* <p>Item Type: {this.props.item.type}</p>
-
-                        <p>Item Description: {this.props.item.description}</p> */}
+                       
                         {this.props.note.item.imageURL === "" ? (
                             <div></div>
                         ) : (
@@ -91,32 +90,6 @@ class NotificationCard extends Component {
                             Delete Notification
                                  </button>
 
-
-                        {/* <Modal
-                            isOpen={this.state.modal}
-                            toggle={this.toggle}
-                            className={this.props.className}
-                        >
-                            <ModalHeader toggle={this.toggle} close={closeBtn}>
-
-                            </ModalHeader>
-                            <ModalBody> */}
-                        {/* <OtherClosetForm
-                                    {...this.props}
-                                    itemId={this.props.item.id}
-                                    getData={this.props.getData}
-                                    toggle={this.toggle}
-                                /> */}
-                        {/* </ModalBody> */}
-                        {/* {<Button
-                                    className="button"
-                                    required
-                                    onClick={this.handleSearch}
-
-                                >
-                                    Notification
-                                 </Button>} */}
-                        {/* </Modal> */}
                     </div>
                     <div className="scroll-img-main">
                         {/* <img className="scroll-img" src={require('../../images/scrollimage.png')} alt="logo" /> */}

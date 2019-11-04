@@ -52,6 +52,7 @@ class OtherClosetForm extends Component {
     // string, user, quality, type, color
     handleSearch = evt => {
         evt.preventDefault();
+        console.log("button", this.props.currentUser, this.state)
         APIManager.searchNotMyClothes("items", this.props.currentUser, this.state.quality, this.state.type, this.state.color)
             .then((items => {
                 this.props.dropListSearch(items)
@@ -120,9 +121,9 @@ class OtherClosetForm extends Component {
                                                 <div
                                                     {...getRootProps()}
                                                 >
-                                                    <input {...getInputProps()} /> ADD PICTURES:
+                                                    <input {...getInputProps()} />
                                                     {
-                                                        <p>Upload Pictures</p>
+                                                        // <p>Upload Pictures</p>
                                                     }
                                                 </div>
                                             )
@@ -148,6 +149,7 @@ class OtherClosetForm extends Component {
                                         onChange={this.handleFieldChange}
                                         id="quality"
                                         value={this.state.quality}>
+                                       <option>Pick a Quality</option>
                                         {this.state.qualityArray.map(qual =>
                                             <option key={qual.id} value={qual.id}>{qual.name}</option>
                                         )
@@ -165,6 +167,7 @@ class OtherClosetForm extends Component {
                                         onChange={this.handleFieldChange}
                                         id="color"
                                         value={this.state.color}>
+                                     <option>Pick a Color</option>
                                         {this.state.colorArray.map(col =>
                                             <option key={col.id} value={col.id}>{col.name}</option>
                                         )
@@ -181,6 +184,7 @@ class OtherClosetForm extends Component {
                                         onChange={this.handleFieldChange}
                                         id="type"
                                         value={this.state.type}>
+                                    <option>Pick a Type</option>
                                         {this.state.typeArray.map(ty =>
                                             <option key={ty.id} value={ty.id}>{ty.name}</option>
                                         )
@@ -194,6 +198,7 @@ class OtherClosetForm extends Component {
                                     className="button"
                                     required
                                     onClick={this.handleSearch}
+                        
 
                                 >
                                     Search

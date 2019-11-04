@@ -3,8 +3,8 @@ small {
   }
   
   header {
-    background-color:lightcoral;
-    border: cornflowerblue solid 3px;
+    background-color: #C27E38;
+    border: #798E87 solid 3px;
   }
   
   .site-title {
@@ -34,7 +34,7 @@ small {
     font-size: 1.5em;
     color: cornsilk;
     box-sizing: border-box;
-    background-color: cornflowerblue;
+    background-color: #798E87;
     list-style-type: none;
   }
   

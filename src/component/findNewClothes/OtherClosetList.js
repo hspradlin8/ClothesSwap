@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import OtherClosetCard from "./OtherClosetCard";
 import APIManager from "../modules/APIManager";
 import OtherClosetForm from "./OtherClosetForm";
+import "../mycloset/MyCloset.css"
 
 
 class OtherClosetList extends Component {
@@ -43,6 +44,7 @@ class OtherClosetList extends Component {
   //second step: filter stuff from the first step to make sure it is not mine. 
 
   dropListSearch = (items) => {
+    
     console.log("dropListSearch called", items)
     let types = []
     let qualitys = []

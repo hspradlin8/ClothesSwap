@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MyClosetCard from "./MyClosetCard";
 import APIManager from "../modules/APIManager";
 import MyClosetAddForm from "./MyClosetAddForm";
+import "./MyCloset.css"
 
 class MyClosetList extends Component {
   //define what this component needs to render
