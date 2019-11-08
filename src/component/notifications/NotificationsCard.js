@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import APIManager from "../modules/APIManager";
-// import OtherClosetForm from "./OtherClosetForm";
-// import { Modal, ModalHeader, ModalBody, } from "reactstrap";
+import "./Notification.css";
 
 
 
@@ -51,7 +50,7 @@ class NotificationCard extends Component {
                 &times;
 			</button>
         );
-        console.log(this.props.note.item.name, "this is a note")
+        // console.log(this.props.note.item.name, "this is a note")
         return (
             <>
                 <div className="item-card">
@@ -64,7 +63,7 @@ class NotificationCard extends Component {
                         </h3>
 
                         <p>User Email: {this.props.note.user.email}</p>
-
+                        <div className="dropOptions">
                         <p>Item Name:
                         {this.props.note.item.name}
                         </p>
@@ -72,7 +71,7 @@ class NotificationCard extends Component {
                         <p>Item Type:
                         {this.state.typeName}
                         </p>
-
+                        </div>
                        
                         {this.props.note.item.imageURL === "" ? (
                             <div></div>
@@ -82,7 +81,7 @@ class NotificationCard extends Component {
                                 </picture>
                             )}
                         <button
-                            className="button"
+                            className="deleteNoteButton"
                             required
                             onClick={() => this.props.deleteNotification(this.props.note.id)}
 

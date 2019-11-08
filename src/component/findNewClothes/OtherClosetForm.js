@@ -52,7 +52,7 @@ class OtherClosetForm extends Component {
     // string, user, quality, type, color
     handleSearch = evt => {
         evt.preventDefault();
-        console.log("button", this.props.currentUser, this.state)
+        //console.log("button", this.props.currentUser, this.state)
         APIManager.searchNotMyClothes("items", this.props.currentUser, this.state.quality, this.state.type, this.state.color)
             .then((items => {
                 this.props.dropListSearch(items)
@@ -69,7 +69,7 @@ class OtherClosetForm extends Component {
 
         upload.end((err, response) => {
             if (err) {
-                console.error(err);
+                //  console.error(err);
             }
 
             if (response.body.secure_url !== '') {

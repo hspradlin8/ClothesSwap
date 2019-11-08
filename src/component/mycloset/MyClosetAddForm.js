@@ -59,7 +59,7 @@ class MyClosetAddForm extends Component {
 
         upload.end((err, response) => {
             if (err) {
-                console.error(err);
+                // console.error(err);
             }
 
             if (response.body.secure_url !== '') {
