@@ -1,0 +1,15 @@
+
+.item-card{
+    margin: 20px;
+}
+
+.card-content{
+    display: flex; 
+    justify-content: space-between;
+}
+
+
+.deleteNoteButton{
+    background:maroon;
+    height: 50px;
+}
