@@ -14,17 +14,23 @@ max-height: auto;
 }
 
 .delete-item{
-    background-color: maroon;
+    background-color: #77453C;
     color: white;
 }
 
 .edit-item{
-    background: maroon;
+    background: #77453C;
+    color: white;
+}
+
+.btn-primary,
+ .cancel{
+    background: #77453C;
     color: white;
 }
 
 .addItem,
 .buttonNote {
-    background: maroon;
+    background: #77453C;
     color: white;
 }

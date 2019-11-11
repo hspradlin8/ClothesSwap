@@ -270,7 +270,7 @@ class MyClosetEditForm extends Component {
                                 this.props.toggle();
                                 //console.log("button fires");
                             }}
-                            className="btn btn-primary"
+                            className="btn-primary"
                         >
                             Submit
 					</Button>
