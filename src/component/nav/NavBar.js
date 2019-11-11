@@ -17,7 +17,7 @@ class NavBar extends Component {
             <header>
                 <h1 className="titlePage">Sharing is Caring<br />
                 <NavbarBrand href="#home"><img
-                        src={require("../../component/images/OverProject2.png")}
+                        src={require("../../component/images/Attachment.png")}
                         className="prodImg"
                         alt="dressform"
                     ></img></NavbarBrand>
