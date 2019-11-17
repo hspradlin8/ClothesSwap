@@ -11,7 +11,7 @@ ERD: ![Image description](https://github.com/hspradlin8/ClothesSwap/blob/master/
 Sharing is Caring-A clothes swapping app where users can share photos of their items they want to share or swap.
 
 ### Motivation:
-The clothes swapping app is the help people out with obtaining gentlely used apparel for a one time event or as a wardrobe refresher. This app is to help people from buying brand new clothes that they might not use but once. And to help people get rid of their clothes they no longer want by trading with other people for their clothes. 
+The clothes swapping app is the help people out with obtaining gently used apparel for a one time event or as a wardrobe refresher. This app is to help people from buying brand new clothes that they might not use but once. And to help people get rid of their clothes they no longer want by trading with other people for their clothes. 
 
 ### MVP: 
 1. User-specific CRUD: Have each user be able to add a new item to their specific item list. Have a delete and edit button on each specific item.
