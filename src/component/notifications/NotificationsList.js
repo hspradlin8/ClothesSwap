@@ -25,31 +25,34 @@ class NotificationList extends Component {
     APIManager.delete("notifications", id)
       .then(() => {
         this.getNotifications();
-        
+
       });
   };
 
-// 
-getNotifications = () => {
-APIManager.getAllMyNotifications(this.activeUserId)
-.then((notificationList) => {
-    // console.log(notificationList)
-    this.setState({
-        notificationList: notificationList
-    })
-})
-}
-
-getItemTypes = () => {
-    APIManager.getAll("type")
-    .then((types) => {
+  // 
+  getNotifications = () => {
+    APIManager.getAllMyNotifications(this.activeUserId)
+      .then((notificationList) => {
+        // console.log(notificationList)
         this.setState({
-            types: types
+          notificationList: notificationList
         })
-    })
-}
+      })
+  }
+
+
+
+  getItemTypes = () => {
+    APIManager.getAll("type")
+      .then((types) => {
+        this.setState({
+          types: types
+        })
+      })
+  }
   componentDidMount() {
     this.getNotifications();
+    // this.updateNotifications();
     this.getItemTypes();
   }
 

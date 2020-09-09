@@ -20,7 +20,18 @@ export default {
   getAllMyNotifications(userId) {
     return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
   },
-  getUserEmail(email){
+  // new fetch call
+  getCountOfItemsInMyCloset(resource, userId) {
+    return fetch(`${remoteURL}/${resource}?userId=${userId}`).then(result => result.json())
+  },
+  getCountOfLoanItems(userId) {
+    return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
+  },
+  getCountOfBorrowedItems(userId) {
+    return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
+  },
+  // 
+  getUserEmail(email) {
     return fetch(`${remoteURL}/users?email=${email}`).then(result => result.json())
   },
   getAllMessages(resource) {
