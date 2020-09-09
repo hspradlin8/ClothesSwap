@@ -28,7 +28,7 @@ export default {
     return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
   },
   getCountOfBorrowedItems(userId) {
-    return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
+    return fetch(`${remoteURL}/notifications?userId=${userId}&_expand=user&_expand=item`).then(result => result.json())
   },
   // 
   getUserEmail(email) {
