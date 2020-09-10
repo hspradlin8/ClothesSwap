@@ -1,0 +1,11 @@
+.aboutPage{
+    text-align: center;
+    list-style-type: none;
+    background-color: #798E87;
+    color: cornsilk;
+    padding: 30px;
+}
+
+ul.about{
+    list-style-type: none;
+}

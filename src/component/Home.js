@@ -78,10 +78,10 @@ class Home extends Component {
                 <div className="home">
                     <h2>Welcome, {this.state.user.name}!</h2>
                     <h2>User Email: {this.state.user.email}</h2>
-                    <div>
-                        <div>Items in my Closet: {this.state.userCurrentItems}</div>
-                        <div>Items Loaned Out: {this.state.userLoanItems}</div>
-                        <div>Items Borrowed: {this.state.userBorrowItems}</div>
+                    <div class="flex-container">
+                        <div>Items In My Closet: {this.state.userCurrentItems}</div>
+                        <div>Items That You Loaned Out: {this.state.userLoanItems}</div>
+                        <div>Items That You Borrowed: {this.state.userBorrowItems}</div>
                     </div>
                     <h3>Notifications:</h3>
                 </div>
