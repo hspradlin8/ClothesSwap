@@ -2,6 +2,20 @@
 text-align: center;
 }
 
+.flex-container{
+   display:flex;
+   background-color: #798E87; 
+   justify-content:center;
+}
+
+.flex-container > div {
+    background-color:cornsilk;
+    margin: 10px;
+    padding: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    align-content: center;
+  }
 /* .noteList{
     flex-wrap: wrap;
 } */
