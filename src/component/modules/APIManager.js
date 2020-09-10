@@ -20,7 +20,7 @@ export default {
   getAllMyNotifications(userId) {
     return fetch(`${remoteURL}/notifications?recieverId=${userId}&_expand=user&_expand=item`).then(result => result.json())
   },
-  // new fetch call
+  // new fetches
   getCountOfItemsInMyCloset(resource, userId) {
     return fetch(`${remoteURL}/${resource}?userId=${userId}`).then(result => result.json())
   },

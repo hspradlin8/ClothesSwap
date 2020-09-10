@@ -28,7 +28,7 @@ class Home extends Component {
     userLoanItems = () => {
         APImanager.getCountOfLoanItems(this.state.user.id)
             .then((loanItems) => {
-                console.log(loanItems, "loan items")
+                // console.log(loanItems, "loan items")
                 this.setState({
                     userLoanItems: loanItems.length
                 })
@@ -38,7 +38,7 @@ class Home extends Component {
     userBorrowItems = () => {
         APIManager.getCountOfBorrowedItems(this.state.user.id)
             .then((borrowedItems) => {
-                console.log(borrowedItems, "borrowed items")
+                // console.log(borrowedItems, "borrowed items")
                 this.setState({
                     userBorrowItems: borrowedItems.length
                 })
@@ -51,6 +51,11 @@ class Home extends Component {
         this.userBorrowItems();
     }
 
+
+    myTimer = () => {
+        this.getDashBoardItems();
+    }
+
     componentDidMount = () => {
         let userId = sessionStorage.getItem("credentials")
         APImanager.get("users", userId)
@@ -60,6 +65,8 @@ class Home extends Component {
                 })
             }).then(() => {
                 this.getDashBoardItems();
+            }).then(() => {
+                setInterval(this.myTimer, 3000);
             })
     }
 
@@ -71,9 +78,11 @@ class Home extends Component {
                 <div className="home">
                     <h2>Welcome, {this.state.user.name}!</h2>
                     <h2>User Email: {this.state.user.email}</h2>
-                    <div># of items in closet: {this.state.userCurrentItems}</div>
-                    <div># of items loaned out: {this.state.userLoanItems}</div>
-                    <div># of items borrowed: {this.state.userBorrowItems}</div>
+                    <div>
+                        <div>Items in my Closet: {this.state.userCurrentItems}</div>
+                        <div>Items Loaned Out: {this.state.userLoanItems}</div>
+                        <div>Items Borrowed: {this.state.userBorrowItems}</div>
+                    </div>
                     <h3>Notifications:</h3>
                 </div>
                 <div className="noteList">
